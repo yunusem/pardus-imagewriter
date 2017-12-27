@@ -5,8 +5,7 @@
 #include "usbdevice.h"
 
 #include <QApplication>
-#include <QMessageBox>
-
+#include <QDebug>
 
 // Several WinAPI COM specific macros for keeping the code clean
 
@@ -50,7 +49,7 @@
     }
 
 
-bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam)
+QList<UsbDevice> platformEnumFlashDevices()
 {
     // Using WMI for enumerating the USB devices
 
@@ -77,6 +76,7 @@ bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam
 
     // Temporary object for attaching data to the combobox entries
     UsbDevice* deviceData = NULL;
+    QList<UsbDevice> l;
 
     try
     {
@@ -219,7 +219,7 @@ bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam
             FREE_BSTR(strQueryPartitions);
 
             // The device information is now complete, append the entry
-            callback(cbParam, deviceData);
+            l.append(*deviceData);
             // The object is now under the GUI control, nullify the pointer
             deviceData = NULL;
         }
@@ -227,11 +227,7 @@ bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam
     catch (QString errMessage)
     {
         // Something bad happened
-        QMessageBox::critical(
-            QApplication::activeWindow(),
-            ApplicationTitle,
-            errMessage
-        );
+        qDebug() << errMessage;
     }
 
     // The cleanup stage
@@ -252,7 +248,7 @@ bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam
     FREE_BSTR(strQueryDisks);
     FREE_BSTR(strQueryPartitions);
     FREE_BSTR(strQueryLetters);
-    return true;
+    return l;
 }
 
 bool ensureElevated()
