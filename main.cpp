@@ -20,14 +20,16 @@ int main(int argc, char *argv[])
 #endif
     qmlRegisterType<Helper>("piw.helper",1,0,"Helper");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication::setWindowIcon(QIcon(":/icon.svg"));
+    QGuiApplication::setWindowIcon(QIcon(":/images/icon.svg"));
     QGuiApplication app(argc, argv);
 
     setup_unix_signal_handlers();
 
+    /*
     if (!ensureElevated()) {
         return 1;
     }
+    */
 
 
 #if defined(Q_OS_WIN32)

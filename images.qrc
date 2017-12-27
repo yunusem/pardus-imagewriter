@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>icon.svg</file>
-        <file>iso.svg</file>
-        <file>usb.svg</file>
+        <file>images/icon.svg</file>
+        <file>images/iso.svg</file>
+        <file>images/usb.svg</file>
     </qresource>
 </RCC>

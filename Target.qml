@@ -23,7 +23,7 @@ Item {
             smooth: true
 
             anchors.horizontalCenter: parent.horizontalCenter
-            source: "usb.svg"
+            source: "images/usb.svg"
         }
 
 
