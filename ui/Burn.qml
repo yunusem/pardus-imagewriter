@@ -22,7 +22,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             Image {
                 id: fileIcon
-                source: "images/iso.svg"
+                source: "../images/iso.svg"
                 width: appMain.width / 10
                 height: width
                 smooth: true
@@ -42,7 +42,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             Image {
                 id: targetIcon
-                source: "images/usb.svg"
+                source: "../images/usb.svg"
                 width: appMain.width / 10
                 height: width
                 smooth: true

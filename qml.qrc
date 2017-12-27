@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>ui/main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>File.qml</file>
-        <file>Target.qml</file>
-        <file>Burn.qml</file>
+        <file>ui/File.qml</file>
+        <file>ui/Target.qml</file>
+        <file>ui/Burn.qml</file>
     </qresource>
 </RCC>

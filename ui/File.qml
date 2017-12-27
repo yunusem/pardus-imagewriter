@@ -20,7 +20,7 @@ Item {
             smooth: true
 
             anchors.horizontalCenter: parent.horizontalCenter
-            source: "images/iso.svg"
+            source: "../images/iso.svg"
         }
 
         Button {
