@@ -18,11 +18,13 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .          *
  *****************************************************************************/
 #include "helper.h"
-#include "signalhandler.h"
 #include "common.h"
 #include "usbdevicemonitor.h"
 #include "usbdevice.h"
 #include "imagewriter.h"
+#if defined(Q_OS_LINUX)
+#include "signalhandler.h"
+#endif
 #include <QFile>
 #include <QDir>
 #include <QFileInfo>
@@ -33,8 +35,11 @@
 Helper::Helper(QObject *parent) : QObject(parent),
     progressValue(0), maxValue(1), b(false)
 {
-    sh = new SignalHandler;
+
+#if defined(Q_OS_LINUX)
+    SignalHandler *sh = new SignalHandler;
     sh->setHelper(this);
+#endif
     udm = new UsbDeviceMonitor(this);
     udm->startMonitoring();
 

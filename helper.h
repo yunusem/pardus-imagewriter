@@ -20,13 +20,14 @@
 #ifndef HELPER_H
 #define HELPER_H
 
+
 #include "usbdevice.h"
 #include <QObject>
 #include <QList>
 #include <QString>
 
+
 class QStringList;
-class SignalHandler;
 class UsbDeviceMonitor;
 
 
@@ -55,10 +56,8 @@ private:
     int maxValue;
     bool b;
     QStringList dl;
-    SignalHandler *sh;
     UsbDeviceMonitor *udm;
     QList<UsbDevice> udl;
-
 signals:
     void progressChanged();
     void deviceListChanged();

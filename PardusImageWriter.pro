@@ -1,11 +1,10 @@
-QT += qml quick
+QT += qml quick widgets
 
 CONFIG += c++11
 
 QT_PLUGINS -= qdds qicns qjp2 qmng qtga qtiff qwbmp qwebp
 
 SOURCES += main.cpp \
-    signalhandler.cpp \
     helper.cpp \
     common.cpp \
     devicehandler.cpp \
@@ -13,7 +12,6 @@ SOURCES += main.cpp \
     physicaldevice.cpp
 
 HEADERS += \
-    signalhandler.h \
     helper.h \
     usbdevicemonitor.h \
     platform.h \
@@ -32,8 +30,10 @@ win32 {
 linux {
     SOURCES += platform_lin.cpp \
         platform_lin_suprogram.cpp \
+        signalhandler.cpp \
         usbdevicemonitor_lin.cpp
     HEADERS += usbdevicemonitor_lin_p.h \
+        signalhandler.h \
         platform_lin_suprogram.h
 }
 macx {
