@@ -71,7 +71,7 @@ CFStringRef readStringRegKey(io_service_t device, CFStringRef key)
 }
 
 
-bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam)
+QList<UsbDevice> platformEnumFlashDevices()
 {
     CFMutableDictionaryRef matchingDict;
     io_iterator_t iter;
@@ -94,6 +94,7 @@ bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam
 
     CFStringEncoding encodingMethod = CFStringGetSystemEncoding();
 
+    QList<UsbDevice> l;
     // Enumerate the devices
     while ((device = IOIteratorNext(iter)))
     {
@@ -146,14 +147,14 @@ bool platformEnumFlashDevices(AddFlashDeviceCallbackProc callback, void* cbParam
         deviceData->m_SectorSize = readIntegerRegKey(device, CFSTR(kIOMediaPreferredBlockSizeKey));
 
         // The device information is now complete, append the entry
-        callback(cbParam, deviceData);
+        l.append(*deviceData);
 
         // Free the resources
         IOObjectRelease(device);
     }
 
     IOObjectRelease(iter);
-    return true;
+    return l;
 }
 
 bool ensureElevated()
