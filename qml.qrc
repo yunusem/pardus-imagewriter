@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>File.qml</file>
+        <file>Target.qml</file>
+        <file>Burn.qml</file>
+    </qresource>
+</RCC>
