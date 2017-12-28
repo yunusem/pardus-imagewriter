@@ -5,7 +5,11 @@
 #endif
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QTranslator>
+#include <QLocale>
 #include <QIcon>
+
+#include <QDebug>
 
 #if !defined(Q_OS_WIN32) && !defined(Q_OS_LINUX) && !defined(Q_OS_MAC)
 #error Unsupported platform!
@@ -47,6 +51,13 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setWindowIcon(QIcon(":/images/icon.svg"));
     QGuiApplication app(argc, argv);
+
+    QTranslator t;
+        if (t.load(":/translations/piw_" + QLocale::system().name())) {
+            app.installTranslator(&t);
+        } else {
+            qDebug() << "Could not load the translation";
+        }
 
 #if defined(Q_OS_LINUX)
     setup_unix_signal_handlers();

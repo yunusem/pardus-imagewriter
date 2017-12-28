@@ -42,7 +42,8 @@ macx {
     HEADERS += usbdevicemonitor_mac_p.h
 }
 
-RESOURCES += qml.qrc images.qrc
+RESOURCES += qml.qrc images.qrc \
+    translations.qrc
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
