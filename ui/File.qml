@@ -29,8 +29,8 @@ Item {
             enabled: !isBurning
             anchors.horizontalCenter: parent.horizontalCenter
             text: "+"
-            onClicked: {
-                fd.visible = true
+            onClicked: {                
+                fd.open()
             }
         }
     }
@@ -45,7 +45,7 @@ Item {
     FileDialog {
         id: fd
         title: qsTr("Please choose the disk image")
-        folder: shortcuts.home
+        folder: helper.downloadsFolderPath()
         nameFilters: [qsTr("Disk images (*.iso *.bin *.img)")]
         onAccepted: {
             var path = fd.fileUrl.toString();
@@ -62,5 +62,8 @@ Item {
             btn.text = fileName != "" ? fileName : "+"
         }
         visible: false
+        Component.onCompleted: {
+            fd.close()
+        }
     }
 }

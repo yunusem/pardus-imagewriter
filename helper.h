@@ -49,6 +49,7 @@ public:
     Q_INVOKABLE bool preProcessImageFile(const QString &newImageFile);
     Q_INVOKABLE void writeToDevice(int index);
     Q_INVOKABLE int maximumProgressValue();
+    Q_INVOKABLE QString downloadsFolderPath() const;
 private:
     QString imageFile;
     quint64 imageSize;

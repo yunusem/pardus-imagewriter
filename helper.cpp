@@ -30,6 +30,7 @@
 #include <QFileInfo>
 #include <QStringList>
 #include <QThread>
+#include <QStandardPaths>
 #include <QDebug>
 
 Helper::Helper(QObject *parent) : QObject(parent),
@@ -61,6 +62,15 @@ int Helper::progress() const
 QString Helper::fileNameFromPath(const QString &path) const
 {
     return QFileInfo(path).fileName();
+}
+
+QString Helper::downloadsFolderPath() const
+{
+    QStringList downloadDirs = QStandardPaths::standardLocations(QStandardPaths::DownloadLocation);
+    if (downloadDirs.size() > 0)
+        return downloadDirs.at(0);
+    else
+        return "";
 }
 
 QStringList Helper::devices()
