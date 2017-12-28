@@ -5,5 +5,6 @@
         <file>ui/File.qml</file>
         <file>ui/Target.qml</file>
         <file>ui/Burn.qml</file>
+        <file>ui/ProgressBarCircle.qml</file>
     </qresource>
 </RCC>
