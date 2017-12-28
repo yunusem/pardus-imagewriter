@@ -12,7 +12,7 @@ Item {
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Choose the image file")
+            text: qsTr("Choose the disk image file")
         }
 
         Image {
@@ -25,8 +25,10 @@ Item {
 
         Button {
             id: btn
+            scale: 0.8
+            enabled: !isBurning
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("+")
+            text: "+"
             onClicked: {
                 fd.visible = true
             }
@@ -42,12 +44,12 @@ Item {
 
     FileDialog {
         id: fd
-        title: "Please choose a file"
+        title: qsTr("Please choose the disk image")
         folder: shortcuts.home
-        nameFilters: ["Image files (*.iso *.img)"]
+        nameFilters: [qsTr("Disk images (*.iso *.bin *.img)")]
         onAccepted: {
             var path = fd.fileUrl.toString();
-            path = path.replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"");
+            path = path.replace(/^(file:\/{3})/,"");
             var cleanPath = decodeURIComponent(path);
             cleanPath = "/" + cleanPath
             if (helper.preProcessImageFile(cleanPath)) {
