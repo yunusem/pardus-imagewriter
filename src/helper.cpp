@@ -31,6 +31,7 @@
 #include <QStringList>
 #include <QThread>
 #include <QStandardPaths>
+#include <QUrl>
 #include <QDebug>
 
 Helper::Helper(QObject *parent) : QObject(parent),
@@ -88,8 +89,13 @@ void Helper::scheduleEnumFlashDevices()
     emit deviceListChanged();
 }
 
-bool Helper::preProcessImageFile(const QString &newImageFile)
+bool Helper::preProcessImageFile(const QString &fileUrl)
 {
+    QString newImageFile;
+    if(fileUrl.left(7) == "file://") {
+        newImageFile = QUrl(fileUrl).toLocalFile();
+        newImageFile = QDir(newImageFile).absolutePath();
+    }
     QFile f(newImageFile);
     if (!f.open(QIODevice::ReadOnly))
     {
@@ -140,9 +146,7 @@ int Helper::maximumProgressValue()
 
 void Helper::updateProgressValue(int increment)
 {
-    progressValue += increment; //* 100 / maxValue;
-    //qDebug() << "progressvalue  = " << progressValue;
-    //progressValue += increment;
+    progressValue += increment;
     emit progressChanged();
 }
 

@@ -46,7 +46,7 @@ public:
     QStringList devices();
     int progress() const;
     Q_INVOKABLE QString fileNameFromPath(const QString &path) const;
-    Q_INVOKABLE bool preProcessImageFile(const QString &newImageFile);
+    Q_INVOKABLE bool preProcessImageFile(const QString &fileUrl);
     Q_INVOKABLE void writeToDevice(int index);
     Q_INVOKABLE int maximumProgressValue();
     Q_INVOKABLE QString downloadsFolderPath() const;

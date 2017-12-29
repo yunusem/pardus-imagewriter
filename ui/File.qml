@@ -49,11 +49,8 @@ Item {
         nameFilters: [qsTr("Disk images") + " (*.iso *.bin *.img)"]
         onAccepted: {
             var path = fd.fileUrl.toString();
-            path = path.replace(/^(file:\/{3})/,"");
-            var cleanPath = decodeURIComponent(path);
-            cleanPath = "/" + cleanPath
-            if (helper.preProcessImageFile(cleanPath)) {
-                filePath = cleanPath
+            if (helper.preProcessImageFile(path)) {
+                filePath = path
                 fileName = helper.fileNameFromPath(filePath)
                 btn.text = fileName
             }
