@@ -19,3 +19,34 @@ Simple Qt cpp backend, qml frontend disk image writing application.
 ### On MacOS (High Sierra)
 
 ![w1](/screenshots/piw_macOS.jpg)
+
+
+## How to build (on Linux)
+
+Clone the project
+```bash
+git clone https://github.com/yunusem/pardus-imagewriter.git
+```
+Install build dependencies
+```bash
+sudo apt install build-essential libc6 libgcc1 libgl1-mesa-glx | libgl1 libqt5core5a libqt5dbus5 libqt5gui5  libqt5network5 libqt5qml5 libqt5quick5 libqt5svg5-dev libqt5widgets5 libstdc++6 libudev-dev qtdeclarative5-dev
+```
+
+Build
+```bash
+cd pardus-imagewriter
+mkdir build
+cd build
+qmake ../
+make
+```
+
+Install Runtime dependencies
+```bash
+sudo apt install libqt5svg5 gksu qml-module-qtquick-controls2 qml-module-qt-labs-folderlistmodel qml-module-qtquick2
+```
+
+Run
+```bash
+gksudo ./piw
+```
