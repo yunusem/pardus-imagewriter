@@ -4,9 +4,9 @@
 
 #include <QFile>
 
-#include "common.h"
-#include "imagewriter.h"
-#include "physicaldevice.h"
+#include "src/common.h"
+#include "src/imagewriter.h"
+#include "src/physicaldevice.h"
 
 ImageWriter::ImageWriter(const QString& ImageFile, UsbDevice Device, QObject *parent) :
     QObject(parent),

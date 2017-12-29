@@ -4,42 +4,42 @@ CONFIG += c++11
 
 QT_PLUGINS -= qdds qicns qjp2 qmng qtga qtiff qwbmp qwebp
 
-SOURCES += main.cpp \
-    helper.cpp \
-    common.cpp \
-    devicehandler.cpp \
-    imagewriter.cpp \
-    physicaldevice.cpp
+SOURCES += src/main.cpp \
+    src/helper.cpp \
+    src/common.cpp \
+    src/devicehandler.cpp \
+    src/imagewriter.cpp \
+    src/physicaldevice.cpp
 
 HEADERS += \
-    helper.h \
-    usbdevicemonitor.h \
-    platform.h \
-    common.h \
-    usbdevice.h \
-    devicehandler.h \
-    physicaldevice.h \
-    imagewriter.h
+    src/helper.h \
+    src/usbdevicemonitor.h \
+    src/platform.h \
+    src/common.h \
+    src/usbdevice.h \
+    src/devicehandler.h \
+    src/physicaldevice.h \
+    src/imagewriter.h
 
 win32 {
-    SOURCES += platform_win.cpp \
-        usbdevicemonitor_win.cpp
-    HEADERS += usbdevicemonitor_win_p.h
+    SOURCES += src/platform_win.cpp \
+        src/usbdevicemonitor_win.cpp
+    HEADERS += src/usbdevicemonitor_win_p.h
     QMAKE_CXXFLAGS_RELEASE -= -Zc:strictStrings
 }
 linux {
-    SOURCES += platform_lin.cpp \
-        platform_lin_suprogram.cpp \
-        signalhandler.cpp \
-        usbdevicemonitor_lin.cpp
-    HEADERS += usbdevicemonitor_lin_p.h \
-        signalhandler.h \
-        platform_lin_suprogram.h
+    SOURCES += src/platform_lin.cpp \
+        src/platform_lin_suprogram.cpp \
+        src/signalhandler.cpp \
+        src/usbdevicemonitor_lin.cpp
+    HEADERS += src/usbdevicemonitor_lin_p.h \
+        src/signalhandler.h \
+        src/platform_lin_suprogram.h
 }
 macx {
-    OBJECTIVE_SOURCES += platform_mac.mm \
-        usbdevicemonitor_mac.mm
-    HEADERS += usbdevicemonitor_mac_p.h
+    OBJECTIVE_SOURCES += src/platform_mac.mm \
+        src/usbdevicemonitor_mac.mm
+    HEADERS += src/usbdevicemonitor_mac_p.h
 }
 
 RESOURCES += qml.qrc images.qrc \

@@ -21,7 +21,7 @@
 #define HELPER_H
 
 
-#include "usbdevice.h"
+#include "src/usbdevice.h"
 #include <QObject>
 #include <QList>
 #include <QString>

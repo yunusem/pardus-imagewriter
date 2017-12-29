@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 // This file contains Windows implementation of platform-dependent functions
 
-#include "common.h"
-#include "usbdevice.h"
+#include "src/common.h"
+#include "src/usbdevice.h"
 
 #include <QApplication>
 #include <QDebug>

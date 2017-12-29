@@ -4,8 +4,8 @@
 #include <QDir>
 #include <QRegularExpression>
 #include <QDebug>
-#include "platform_lin_suprogram.h"
-#include "usbdevice.h"
+#include "src/platform_lin_suprogram.h"
+#include "src/usbdevice.h"
 
 
 QList<UsbDevice> platformEnumFlashDevices()

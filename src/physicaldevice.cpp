@@ -2,7 +2,7 @@
 // Implementation of PhysicalDevice
 
 
-#include "physicaldevice.h"
+#include "src/physicaldevice.h"
 
 PhysicalDevice::PhysicalDevice(const QString& name) :
     QFile(name)

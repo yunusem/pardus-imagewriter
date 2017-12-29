@@ -4,11 +4,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 // ImageWriter is a class for writing image file to the USB flash disk
 
-#include "helper.h"
+#include "src/helper.h"
 #include <QObject>
 #include <QMutex>
 
-#include "usbdevice.h"
+#include "src/usbdevice.h"
 
 
 class ImageWriter : public QObject

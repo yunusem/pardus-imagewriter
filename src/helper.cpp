@@ -17,13 +17,13 @@
  *   Free Software Foundation, Inc.,                                         *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .          *
  *****************************************************************************/
-#include "helper.h"
-#include "common.h"
-#include "usbdevicemonitor.h"
-#include "usbdevice.h"
-#include "imagewriter.h"
+#include "src/helper.h"
+#include "src/common.h"
+#include "src/usbdevicemonitor.h"
+#include "src/usbdevice.h"
+#include "src/imagewriter.h"
 #if defined(Q_OS_LINUX)
-#include "signalhandler.h"
+#include "src/signalhandler.h"
 #endif
 #include <QFile>
 #include <QDir>

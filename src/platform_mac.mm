@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // This file contains Mac implementation of platform-dependent functions
 
-#include "common.h"
+#include "src/common.h"
 #include "mainapplication.h"
-#include "usbdevice.h"
+#include "src/usbdevice.h"
 
 #include <Cocoa/Cocoa.h>
 #include <IOKit/usb/IOUSBLib.h>

@@ -1,10 +1,10 @@
-#include "common.h"
+#include "src/common.h"
 
 #include <QFile>
 #include <QStringList>
 
 ////////////////////////////////////////////////////////////////////////////////
-// Implementation of the non-template cross-platform functions from common.h
+// Implementation of the non-template cross-platform functions from src/common.h
 
 
 #if defined(Q_OS_WIN32)

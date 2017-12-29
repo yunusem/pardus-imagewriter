@@ -1,6 +1,6 @@
-#include "helper.h"
+#include "src/helper.h"
 #if defined(Q_OS_LINUX)
-#include "signalhandler.h"
+#include "src/signalhandler.h"
 #include <signal.h>
 #endif
 #include <QGuiApplication>

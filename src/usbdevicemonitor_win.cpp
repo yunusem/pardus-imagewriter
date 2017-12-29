@@ -3,8 +3,8 @@
 
 #include <QApplication>
 
-#include "usbdevicemonitor.h"
-#include "usbdevicemonitor_win_p.h"
+#include "src/usbdevicemonitor.h"
+#include "src/usbdevicemonitor_win_p.h"
 
 
 // Private class implementation

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Mac OS X implementation of UsbDeviceMonitor
 
-#include "usbdevicemonitor.h"
-#include "usbdevicemonitor_mac_p.h"
+#include "src/usbdevicemonitor.h"
+#include "src/usbdevicemonitor_mac_p.h"
 
 #include <Cocoa/Cocoa.h>
 #include <IOKit/IOBSD.h>

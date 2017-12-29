@@ -2,8 +2,8 @@
 #include <QStandardPaths>
 #include <QFile>
 
-#include "common.h"
-#include "platform_lin_suprogram.h"
+#include "src/common.h"
+#include "src/platform_lin_suprogram.h"
 
 // Copied from private Qt implementation at qtbase/src/platformsupport/services/genericunix/qgenericunixservices.cpp
 static QString detectDesktopEnvironment()

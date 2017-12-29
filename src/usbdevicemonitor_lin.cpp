@@ -3,8 +3,8 @@
 
 #include <dlfcn.h>
 
-#include "usbdevicemonitor.h"
-#include "usbdevicemonitor_lin_p.h"
+#include "src/usbdevicemonitor.h"
+#include "src/usbdevicemonitor_lin_p.h"
 
 // Declare required functions as weak so that they were not reported as missing at compile time.
 // In runtime it is required to ensure they are defined: we do it by checking that libudev is loaded.

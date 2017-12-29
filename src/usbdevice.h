@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Class for storing information about USB flash disk
 
-#include "common.h"
+#include "src/common.h"
 
 #include <QStringList>
 

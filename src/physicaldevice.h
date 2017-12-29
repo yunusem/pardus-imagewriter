@@ -7,7 +7,7 @@
 
 #include <QFile>
 
-#include "common.h"
+#include "src/common.h"
 
 class PhysicalDevice : public QFile
 {

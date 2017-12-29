@@ -6,7 +6,7 @@
 #include <QAbstractNativeEventFilter>
 #include <QSocketNotifier>
 
-#include "common.h"
+#include "src/common.h"
 
 class UsbDeviceMonitorPrivate;
 class UsbDeviceMonitor : public QObject, public QAbstractNativeEventFilter
