@@ -93,15 +93,15 @@ void ImageWriter::writeImage()
         int mntEntriesNum = getmntinfo(&mntEntries, MNT_WAIT);
         for (int i = 0; i < mntEntriesNum; ++i)
         {
-            for (int j = 0; j < m_Device->m_Volumes.size(); ++j)
+            for (int j = 0; j < m_Device.m_Volumes.size(); ++j)
             {
                 // Check that the mount point is either our target device itself or a partition on it
-                if ((mntEntries[i].f_mntfromname == m_Device->m_Volumes[j]) ||
-                    QString(mntEntries[i].f_mntfromname).startsWith(m_Device->m_Volumes[j] + 's'))
+                if ((mntEntries[i].f_mntfromname == m_Device.m_Volumes[j]) ||
+                    QString(mntEntries[i].f_mntfromname).startsWith(m_Device.m_Volumes[j] + 's'))
                 {
                     // Mount point is the selected device or one of its partitions - try to unmount it
                     if (unmount(mntEntries[i].f_mntonname, MNT_FORCE) != 0)
-                        errMessages << tr("Failed to unmount the volume") + " " + m_Device->m_Volumes[i] + "\n" + strerror(errno);
+                        errMessages << tr("Failed to unmount the volume") + " " + m_Device.m_Volumes[i] + "\n" + strerror(errno);
                 }
             }
         }
