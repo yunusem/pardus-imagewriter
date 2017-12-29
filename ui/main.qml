@@ -10,7 +10,7 @@ ApplicationWindow {
     maximumHeight: 400
     width: 300
     height: 400
-    flags: Qt.FramelessWindowHint
+    flags: Qt.FramelessWindowHint | Qt.Window
     title: qsTr("Pardus Image Writer")
 
     property bool requestForBurn : false
