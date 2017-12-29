@@ -12,9 +12,11 @@
         <location filename="../ui/Burn.qml" line="79"/>
         <source>This operation will erase all
 the data in your device.
+
 Are you sure to continue ?</source>
         <translation>Bu işlem cihazınızdaki
 bütün verileri silecektir.
+
 Devam etmek istiyor musunuz ?</translation>
     </message>
     <message>
@@ -78,6 +80,7 @@ Devam etmek istiyor musunuz ?</translation>
     </message>
     <message>
         <location filename="../ui/main.qml" line="155"/>
+        <location filename="../ui/main.qml" line="316"/>
         <source>Are you sure to exit ?</source>
         <translation>Çıkmak istediğinize emin misiniz ?</translation>
     </message>
@@ -90,6 +93,17 @@ Devam etmek istiyor musunuz ?</translation>
         <location filename="../ui/main.qml" line="253"/>
         <source>No</source>
         <translation>Hayır</translation>
+    </message>
+    <message>
+        <location filename="../ui/main.qml" line="314"/>
+        <source>Writing process is ongoing.
+Terminating it is not recommended.
+
+Are you sure to exit ?</source>
+        <translation>Yazma işlemi devam ediyor.
+İşlemi durdurmak tavsiye edilmez.
+
+Çıkmak istediğinize emin misiniz ?</translation>
     </message>
 </context>
 </TS>
