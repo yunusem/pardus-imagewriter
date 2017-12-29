@@ -76,7 +76,7 @@ Item {
                 visible: true
                 onClicked: {
                     requestForBurn = true
-                    dialog.topic = qsTr("This operation will erase all\nthe data in your device.\nAre you sure to continue ?")
+                    dialog.topic = qsTr("This operation will erase all\nthe data in your device.\n\nAre you sure to continue ?")
                     dialog.open()
                 }
             }

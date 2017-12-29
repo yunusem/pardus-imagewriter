@@ -307,4 +307,15 @@ ApplicationWindow {
         }
         targetDevice = target.targetDeviceName
     }
+    onClosing: {
+        close.accepted = false
+        showNormal()
+        if (isBurning) {
+            dialog.topic = qsTr("Writing process is ongoing.\nTerminating it is not recommended.\n\nAre you sure to exit ?")
+        } else {
+            dialog.topic = qsTr("Are you sure to exit ?")
+        }
+        requestForQuit = true
+        dialog.open()
+    }
 }
