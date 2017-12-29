@@ -63,11 +63,11 @@ void ImageWriter::writeImage()
         QStringList errMessages;
 
 #if defined(Q_OS_WIN32)
-        for (int i = 0; i < m_Device->m_Volumes.size(); ++i)
+        for (int i = 0; i < m_Device.m_Volumes.size(); ++i)
         {
             DWORD bret;
             HANDLE volume = CreateFile(
-                reinterpret_cast<const wchar_t*>(("\\\\.\\" + m_Device->m_Volumes[i]).utf16()),
+                reinterpret_cast<const wchar_t*>(("\\\\.\\" + m_Device.m_Volumes[i]).utf16()),
                 GENERIC_READ | GENERIC_WRITE,
                 FILE_SHARE_READ | FILE_SHARE_WRITE,
                 NULL,
@@ -77,14 +77,14 @@ void ImageWriter::writeImage()
             );
             if (volume == INVALID_HANDLE_VALUE)
             {
-                errMessages << formatErrorMessageFromCode(tr("Failed to open the drive") + " " + m_Device->m_Volumes[i]);
+                errMessages << formatErrorMessageFromCode(tr("Failed to open the drive") + " " + m_Device.m_Volumes[i]);
                 continue;
             }
             // Trying to lock the volume but ignore if we failed (such call seems to be required for
             // dismounting the volume on WinXP)
             DeviceIoControl(volume, FSCTL_LOCK_VOLUME, NULL, 0, NULL, 0, &bret, NULL);
             if (!DeviceIoControl(volume, FSCTL_DISMOUNT_VOLUME, NULL, 0, NULL, 0, &bret, NULL))
-                errMessages << formatErrorMessageFromCode(tr("Failed to unmount the drive") + " " + m_Device->m_Volumes[i]);
+                errMessages << formatErrorMessageFromCode(tr("Failed to unmount the drive") + " " + m_Device.m_Volumes[i]);
             CloseHandle(volume);
             volume = INVALID_HANDLE_VALUE;
         }
