@@ -2,7 +2,6 @@
 // This file contains Mac implementation of platform-dependent functions
 
 #include "src/common.h"
-#include "mainapplication.h"
 #include "src/usbdevice.h"
 
 #include <Cocoa/Cocoa.h>
@@ -82,14 +81,14 @@ QList<UsbDevice> platformEnumFlashDevices()
     matchingDict = IOServiceMatching(kIOUSBDeviceClassName);
     if (matchingDict == NULL)
     {
-        return false;
+        return QList<UsbDevice>();
     }
 
     // Obtain iterator
     kr = IOServiceGetMatchingServices(kIOMasterPortDefault, matchingDict, &iter);
     if (kr != KERN_SUCCESS)
     {
-        return false;
+        return QList<UsbDevice>();
     }
 
     CFStringEncoding encodingMethod = CFStringGetSystemEncoding();
@@ -181,25 +180,7 @@ bool ensureElevated()
     QByteArray argsBA[maxArgsNum + 1];
     size_t argNo = 0;
     // Executable is not required as first argument, so start with options
-    QString argLang = mApp->getLocale();
-    if (!argLang.isEmpty())
-        argsBA[argNo++] = ("--lang=" + argLang).toUtf8();
-    QString argDir = mApp->getInitialDir();
-    if (!argDir.isEmpty())
-        argsBA[argNo++] = ("--dir=" + argDir).toUtf8();
-    QString argImage = mApp->getInitialImage();
-    if (!argImage.isEmpty())
-         argsBA[argNo++] = argImage.toUtf8();
-
     // Convert arguments into char*'s and append NULL element
-    char* args[maxArgsNum + 1];
-    for (size_t i = 0; i < argNo; ++i)
-         args[i] = argsBA[i].data();
-    args[argNo] = NULL;
-
-    QByteArray appPath = mApp->applicationFilePath().toUtf8();
-    if (AuthorizationExecuteWithPrivileges(authRef, appPath.constData(), kAuthorizationFlagDefaults, args, NULL) != errAuthorizationSuccess)
-        return false;
 
     exit(0);
 }
