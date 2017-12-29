@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Pardus Image Writer
+Name[tr]=Pardus Disk Kalıbı Yazıcı
+Type=Application
+Comment=Simple Qt based disk image writer
+Comment[tr]=Basit Qt tabanlı disk kalıbı yazıcı
+Terminal=false
+Exec=gksudo /usr/bin/piw
+Icon=/usr/share/pardus/pardus-imagewriter/icon.svg
+Categories=Qt;Utility;
+GenericName=Disk Image USB Burner
+GenericName[tr]=Disk Kalıbı USB Yakıcı

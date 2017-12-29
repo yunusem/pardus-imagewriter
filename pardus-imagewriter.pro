@@ -4,6 +4,8 @@ CONFIG += c++11
 
 QT_PLUGINS -= qdds qicns qjp2 qmng qtga qtiff qwbmp qwebp
 
+TARGET = piw
+
 SOURCES += src/main.cpp \
     src/helper.cpp \
     src/common.cpp \
@@ -35,6 +37,18 @@ linux {
     HEADERS += src/usbdevicemonitor_lin_p.h \
         src/signalhandler.h \
         src/platform_lin_suprogram.h
+
+    target.path = /usr/bin/
+
+    desktop_file.files = pardus-imagewriter.desktop
+    desktop_file.path = /usr/share/applications/
+
+    icon.files = images/icon.svg
+    icon.commands = mkdir -p /usr/share/pardus/pardus-imagewriter
+    icon.path = /usr/share/pardus/pardus-imagewriter
+
+    INSTALLS += target desktop_file icon
+
 }
 macx {
     OBJECTIVE_SOURCES += src/platform_mac.mm \
@@ -97,6 +111,4 @@ macx {
         # Clean up the binary after linking
         QMAKE_POST_LINK = strip -S -x $(TARGET)
 }
-
-TARGET = piw
 
