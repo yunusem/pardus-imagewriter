@@ -1,3 +1,17 @@
+pardus-imagewriter (0.1.1-1) unstable; urgency=medium
+
+  [ Hikmet Baş ]
+  * Fix compile errors
+
+  [ Cihangir Akturk ]
+  * macOS specific fixes
+
+  [ Yunusemre Şentürk ]
+  * Make selected file url platform independent
+  * Debian version 0.1.1-1
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Fri, 29 Dec 2017 16:52:03 +0300
+
 pardus-imagewriter (0.1.0-1) unstable; urgency=medium
 
   * Initial release.
