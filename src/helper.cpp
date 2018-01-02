@@ -139,6 +139,16 @@ void Helper::writeToDevice(int index)
     writerThread->start();
 }
 
+quint64 Helper::getImageSize() const
+{
+    return imageSize;
+}
+
+quint64 Helper::getSelectedDeviceSize(const int index) const
+{
+    return udl.at(index).m_Size;
+}
+
 int Helper::maximumProgressValue()
 {
     return maxValue;

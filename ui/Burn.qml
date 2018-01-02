@@ -104,9 +104,15 @@ Item {
                 text: qsTr("Start")
                 visible: true
                 onClicked: {
-                    requestForBurn = true
-                    dialog.topic = qsTr("This operation will erase all\nthe data in your device.\n\nAre you sure to continue ?")
-                    dialog.open()
+                    if (helper.getImageSize() <= helper.getSelectedDeviceSize(target.comboBoxIndex)) {
+                        requestForBurn = true
+                        dialog.topic = qsTr("This operation will erase all\nthe data in your target device.\n\nAre you sure to continue ?")
+                        dialog.open()
+                    } else {
+                        dialog.topic = qsTr("Writing process could not start.\n\nThe disk image size is greater\nthan the target device size.")
+                        dialog.showButtons = false
+                        dialog.open()
+                    }
                 }
             }
         }
