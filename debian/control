@@ -32,6 +32,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
      qml-module-qtgraphicaleffects,
      qml-module-qtquick-dialogs,
      qml-module-qtquick-controls,
+     qml-module-qtquick-templates2,
      qml-module-qt-labs-settings
 Description: Pardus Image Writer
  Simple Qt based Disk Image USB burner.
