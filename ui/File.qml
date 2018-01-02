@@ -16,11 +16,19 @@ Item {
         }
 
         Image {
-            width: 100
+            id: diskImageIcon
             smooth: true
-
+            mipmap: true
+            scale: 0.8
             anchors.horizontalCenter: parent.horizontalCenter
             source: "../images/iso.svg"
+            Behavior on scale {
+                PropertyAnimation {
+                    easing.overshoot: 2
+                    easing.type: Easing.OutBack
+                    duration: 200
+                }
+            }
         }
 
         Button {
@@ -37,8 +45,17 @@ Item {
 
     DropArea {
         anchors.fill: parent
+        onEntered: {
+            diskImageIcon.scale = 1
+        }
+
+        onExited: {
+            diskImageIcon.scale = 0.8
+        }
+
         onDropped: {
-            fileLabel.text = drop.text
+            diskImageIcon.scale = 0.8
+            console.log(drop.text)
         }
     }
 

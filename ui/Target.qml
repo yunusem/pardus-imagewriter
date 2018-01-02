@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.1
 
@@ -19,9 +19,10 @@ Item {
         }
 
         Image {
-            width: 100
+            id: deviceIcon
             smooth: true
-
+            mipmap: true
+            scale: 0.8
             anchors.horizontalCenter: parent.horizontalCenter
             source: "../images/usb.svg"
         }
