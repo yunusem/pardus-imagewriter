@@ -1,6 +1,74 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" version="1">
- <path style="opacity:0.2" d="M 32,5 C 16.488,5 4,17.488 4,33 4,48.512 16.488,61 32,61 47.512,61 60,48.512 60,33 60,17.488 47.512,5 32,5 Z m 0,16 A 12,12 0 0 1 44,33 12,12 0 0 1 32,45 12,12 0 0 1 20,33 12,12 0 0 1 32,21 Z"/>
- <path style="fill:#848484" d="M 32,17 A 15,15 0 0 0 17,32 15,15 0 0 0 32,47 15,15 0 0 0 47,32 15,15 0 0 0 32,17 Z m 0,9 c 3.3138,0 6,2.6862 6,6 0,3.3138 -2.6862,6 -6,6 -3.3138,0 -6,-2.6862 -6,-6 0,-3.3138 2.6862,-6 6,-6 z"/>
- <path style="fill:#cccccc" d="M 32,4 C 16.488,4 4,16.488 4,32 4,47.512 16.488,60 32,60 47.512,60 60,47.512 60,32 60,16.488 47.512,4 32,4 Z m 0,16 A 12,12 0 0 1 44,32 12,12 0 0 1 32,44 12,12 0 0 1 20,32 12,12 0 0 1 32,20 Z"/>
- <path style="opacity:0.2;fill:#ffffff" d="M 32 4 C 16.488 4 4 16.488 4 32 C 4 32.113556 4.0112845 32.224032 4.0175781 32.335938 C 4.3691213 17.134181 16.710728 5 32 5 C 47.287972 5 59.630821 17.13209 59.984375 32.332031 C 59.990631 32.221433 60 32.112217 60 32 C 60 16.488 47.512 4 32 4 z M 20.050781 32.996094 A 12 12 0 0 0 20 34 A 12 12 0 0 0 20.025391 34.5 A 12 12 0 0 1 20.050781 33.996094 A 12 12 0 0 0 32 45 A 12 12 0 0 0 43.949219 34.003906 A 12 12 0 0 1 43.978516 34.595703 A 12 12 0 0 0 44 34 A 12 12 0 0 0 43.949219 33.003906 A 12 12 0 0 1 32 44 A 12 12 0 0 1 20.050781 32.996094 z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128"
+   height="128"
+   version="1"
+   id="svg10"
+   sodipodi:docname="iso.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata16">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     id="namedview12"
+     showgrid="false"
+     inkscape:zoom="3.6875"
+     inkscape:cx="3.5254237"
+     inkscape:cy="32"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" />
+  <g
+     id="g4497"
+     transform="matrix(2.2105263,0,0,2.2105263,-6.3421052,-149.31579)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path2"
+       d="M 32,69 C 16.488,69 4,81.488 4,97 4,112.512 16.488,125 32,125 47.512,125 60,112.512 60,97 60,81.488 47.512,69 32,69 Z m 0,16 A 12,12 0 0 1 44,97 12,12 0 0 1 32,109 12,12 0 0 1 20,97 12,12 0 0 1 32,85 Z"
+       style="opacity:0.2" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4"
+       d="M 32,81 A 15,15 0 0 0 17,96 15,15 0 0 0 32,111 15,15 0 0 0 47,96 15,15 0 0 0 32,81 Z m 0,9 c 3.3138,0 6,2.6862 6,6 0,3.3138 -2.6862,6 -6,6 -3.3138,0 -6,-2.6862 -6,-6 0,-3.3138 2.6862,-6 6,-6 z"
+       style="fill:#848484" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path6"
+       d="M 32,68 C 16.488,68 4,80.488 4,96 4,111.512 16.488,124 32,124 47.512,124 60,111.512 60,96 60,80.488 47.512,68 32,68 Z m 0,16 A 12,12 0 0 1 44,96 12,12 0 0 1 32,108 12,12 0 0 1 20,96 12,12 0 0 1 32,84 Z"
+       style="fill:#cccccc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path8"
+       d="M 32,68 C 16.488,68 4,80.488 4,96 4,96.113556 4.011285,96.224032 4.017578,96.335938 4.3691213,81.134181 16.710728,69 32,69 47.287972,69 59.630821,81.13209 59.984375,96.332031 59.990631,96.221433 60,96.112217 60,96 60,80.488 47.512,68 32,68 Z M 20.050781,96.996094 A 12,12 0 0 0 20,98 12,12 0 0 0 20.02539,98.5 12,12 0 0 1 20.05078,97.996094 12,12 0 0 0 32,109 12,12 0 0 0 43.949219,98.003906 12,12 0 0 1 43.978516,98.595703 12,12 0 0 0 44,98 12,12 0 0 0 43.949219,97.003906 12,12 0 0 1 32,108 12,12 0 0 1 20.050781,96.996094 Z"
+       style="opacity:0.2;fill:#ffffff" />
+  </g>
 </svg>

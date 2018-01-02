@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.1
 
@@ -21,50 +21,79 @@ Item {
             anchors.centerIn: parent
             spacing: parent.height / 10
 
-            Row {
+            Item {
                 id: fileRow
-                spacing: 5
+                height: fileIcon.height
+                width: appMain.width - 10
                 visible: fileName != ""
-                anchors.horizontalCenter: parent.horizontalCenter
-                Image {
-                    id: fileIcon
-                    source: "../images/iso.svg"
-                    width: appMain.width / 10
-                    height: width
-                    smooth: true
-                    antialiasing: true
+
+                MouseArea {
+                    enabled: !isBurning
+                    anchors.fill: parent
+                    onClicked: {
+                        swipeView.currentIndex = 0
+                    }
                 }
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: fileName
-                    font.pointSize: 9
-                    fontSizeMode: Text.HorizontalFit
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
+
+                Row {
+                    spacing: 5
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Image {
+                        id: fileIcon
+                        source: "../images/iso.svg"
+                        width: appMain.width / 10
+                        height: width
+                        smooth: true
+                        mipmap: true
+                    }
+
+                    Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: fileName
+                        font.pointSize: 9
+                        fontSizeMode: Text.HorizontalFit
+                        wrapMode: Text.WordWrap
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                    }
                 }
             }
 
-            Row {
+            Item {
                 id: targetRow
-                spacing: 5
+                height: targetIcon.height
+                width: appMain.width - 10
                 visible: targetDevice != ""
-                anchors.horizontalCenter: parent.horizontalCenter
-                Image {
-                    id: targetIcon
-                    source: "../images/usb.svg"
-                    width: appMain.width / 10
-                    height: width
-                    smooth: true
+
+                MouseArea {
+                    enabled: !isBurning
+                    anchors.fill: parent
+                    onClicked: {
+                        swipeView.currentIndex = 1
+                    }
                 }
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: targetDevice
-                    font.pointSize: 9
-                    fontSizeMode: Text.HorizontalFit
-                    wrapMode: Text.WordWrap
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
+
+                Row {
+                    spacing: 5
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Image {
+                        id: targetIcon
+                        source: "../images/usb.svg"
+                        width: appMain.width / 10
+                        height: width
+                        smooth: true
+                        mipmap: true
+                    }
+
+                    Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: targetDevice
+                        font.pointSize: 9
+                        fontSizeMode: Text.HorizontalFit
+                        wrapMode: Text.WordWrap
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                    }
                 }
             }
 
@@ -75,9 +104,15 @@ Item {
                 text: qsTr("Start")
                 visible: true
                 onClicked: {
-                    requestForBurn = true
-                    dialog.topic = qsTr("This operation will erase all\nthe data in your device.\n\nAre you sure to continue ?")
-                    dialog.open()
+                    if (helper.getImageSize() <= helper.getSelectedDeviceSize(target.comboBoxIndex)) {
+                        requestForBurn = true
+                        dialog.topic = qsTr("This operation will erase all\nthe data in your target device.\n\nAre you sure to continue ?")
+                        dialog.open()
+                    } else {
+                        dialog.topic = qsTr("Writing process could not start.\n\nThe disk image size is greater\nthan the target device size.")
+                        dialog.showButtons = false
+                        dialog.open()
+                    }
                 }
             }
         }

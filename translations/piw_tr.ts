@@ -4,28 +4,39 @@
 <context>
     <name>Burn</name>
     <message>
-        <location filename="../ui/Burn.qml" line="75"/>
+        <location filename="../ui/Burn.qml" line="104"/>
         <source>Start</source>
         <translation>Başlat</translation>
     </message>
     <message>
-        <location filename="../ui/Burn.qml" line="79"/>
+        <location filename="../ui/Burn.qml" line="109"/>
         <source>This operation will erase all
-the data in your device.
+the data in your target device.
 
 Are you sure to continue ?</source>
-        <translation>Bu işlem cihazınızdaki
+        <translation>Bu işlem hedef cihazınızdaki
 bütün verileri silecektir.
 
 Devam etmek istiyor musunuz ?</translation>
     </message>
     <message>
-        <location filename="../ui/Burn.qml" line="125"/>
+        <location filename="../ui/Burn.qml" line="112"/>
+        <source>Writing process could not start.
+
+The disk image size is greater
+than the target device size.</source>
+        <translation>Yazma işlemi başlatılamadı.
+
+Disk kalıbı boyutu hedef
+cihazın boyutundan daha yüksek.</translation>
+    </message>
+    <message>
+        <location filename="../ui/Burn.qml" line="160"/>
         <source>Pardus Image Writer</source>
         <translation>Pardus Disk Kalıbı Yazıcı</translation>
     </message>
     <message>
-        <location filename="../ui/Burn.qml" line="127"/>
+        <location filename="../ui/Burn.qml" line="162"/>
         <source>Writing process is Finished !</source>
         <translation>Yazma işlemi Tamamlandı !</translation>
     </message>
@@ -38,12 +49,12 @@ Devam etmek istiyor musunuz ?</translation>
         <translation>Disk kalıbı dosyasını seçiniz</translation>
     </message>
     <message>
-        <location filename="../ui/File.qml" line="47"/>
+        <location filename="../ui/File.qml" line="64"/>
         <source>Please choose the disk image</source>
         <translation>Lütfen disk kalıbını seçiniz</translation>
     </message>
     <message>
-        <location filename="../ui/File.qml" line="49"/>
+        <location filename="../ui/File.qml" line="66"/>
         <source>Disk images</source>
         <translation>Disk Kalıpları</translation>
     </message>

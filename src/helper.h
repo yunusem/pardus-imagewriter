@@ -50,6 +50,8 @@ public:
     Q_INVOKABLE void writeToDevice(int index);
     Q_INVOKABLE int maximumProgressValue();
     Q_INVOKABLE QString downloadsFolderPath() const;
+    Q_INVOKABLE quint64 getImageSize() const;
+    Q_INVOKABLE quint64 getSelectedDeviceSize(const int index) const;
 private:
     QString imageFile;
     quint64 imageSize;
