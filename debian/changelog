@@ -1,3 +1,10 @@
+pardus-imagewriter (0.1.4-1) unstable; urgency=medium
+
+  * Add cancelling the writing progress support. Closes: #10
+  * Add about dialog. Closes: #9
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Tue, 02 Jan 2018 17:30:20 +0300
+
 pardus-imagewriter (0.1.2-3) unstable; urgency=medium
 
   * Add missing runtime dependency
