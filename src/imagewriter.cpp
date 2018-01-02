@@ -187,7 +187,7 @@ void ImageWriter::writeImage()
 
     // If no errors occurred and user did not stop the operation, it means everything went fine
     if (!isError && !cancelRequested)
-        emit success(tr("The operation completed successfully."));
+        emit success();
 
     // In any case the operation is finished
     emit finished();

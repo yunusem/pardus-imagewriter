@@ -7,6 +7,7 @@ Item {
 
     signal progressValueChanged
     signal burningProcessFinished
+    signal burningProcessCancelled
     signal startBurning
 
     property real maxValue : 1
@@ -123,19 +124,51 @@ Item {
         }
     }
 
-    ProgressBarCircle {
-        id: pb
-        anchors.centerIn: parent
-        width: parent.width * 2 / 3
-        height: parent.width * 2 / 3
-        colorCircle: "#ffcb08"
-        colorBackground: "#111111"
-        thickness: 10
+    Item {
+        id: p2
+
+        anchors.fill: parent
         opacity: isBurning ? 1 : 0
-        visible: isBurning ? true : false
+
         Behavior on opacity {
             PropertyAnimation {
                 duration: 1000
+            }
+        }
+
+        Column {
+            anchors.centerIn: parent
+            spacing: parent.width / 10
+            ProgressBarCircle {
+                id: pb
+                anchors {
+                    //top: parent.top
+                    //topMargin: parent.width / 10
+                    horizontalCenter: parent.horizontalCenter
+                }
+
+                width: p2.width * 2 / 3
+                height: p2.width * 2 / 3
+                colorCircle: "#ffcb08"
+                colorBackground: "#111111"
+                thickness: 10
+            }
+
+            Button {
+                id: btnCancel
+                anchors {
+                    //top: pb.bottom
+                    //topMargin: parent.width / 10
+                    horizontalCenter: parent.horizontalCenter
+                }
+                text: requestForCancel ? qsTr("CANCELLING...") : qsTr("Cancel")
+                visible: true
+                enabled: !requestForCancel
+                onClicked: {
+                    requestForCancel = true
+                    dialog.topic = qsTr("Are you sure to cancel ?")
+                    dialog.open()
+                }
             }
         }
     }
@@ -162,5 +195,10 @@ Item {
         dialog.topic = qsTr("Writing process is Finished !")
         dialog.showButtons = false
         dialog.open()
+    }
+    onBurningProcessCancelled: {
+        requestForCancel = false
+        appMain.title = qsTr("Pardus Image Writer")
+        target.comboBoxIndex = previousIndex
     }
 }

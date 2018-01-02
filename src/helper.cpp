@@ -127,16 +127,23 @@ void Helper::writeToDevice(int index)
     connect(writer, SIGNAL(finished()), writerThread, SLOT(deleteLater()));
     connect(writerThread, SIGNAL(finished()), writerThread, SLOT(deleteLater()));
 
+    connect(this,SIGNAL(cancelWritingProcess()),writer,SLOT(cancelWriting()),Qt::DirectConnection);
     connect(writer, SIGNAL(blockWritten(int)), this, SLOT(updateProgressValue(int)));
 
-    connect(writer, SIGNAL(error(QString)), this, SLOT(output(QString)));
-    connect(writer, SIGNAL(success(QString)), this, SLOT(output(QString)));
+    connect(writer, SIGNAL(error(QString)), this, SLOT(output(QString)));    
 
-    connect(writer,SIGNAL(finished()),this,SIGNAL(burningFinished()));
+    connect(writer,SIGNAL(success()),this,SIGNAL(burningFinished()));
+
+    connect(writer,SIGNAL(cancelled()),this, SIGNAL(burningCancelled()));
 
 
     writer->moveToThread(writerThread);
     writerThread->start();
+}
+
+void Helper::cancelWriting()
+{
+    emit cancelWritingProcess();
 }
 
 quint64 Helper::getImageSize() const
@@ -162,5 +169,6 @@ void Helper::updateProgressValue(int increment)
 
 void Helper::output(QString msg)
 {
+    emit burningCancelled();
     qDebug() << msg;
 }
