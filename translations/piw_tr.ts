@@ -4,12 +4,12 @@
 <context>
     <name>Burn</name>
     <message>
-        <location filename="../ui/Burn.qml" line="104"/>
+        <location filename="../ui/Burn.qml" line="105"/>
         <source>Start</source>
         <translation>Başlat</translation>
     </message>
     <message>
-        <location filename="../ui/Burn.qml" line="109"/>
+        <location filename="../ui/Burn.qml" line="110"/>
         <source>This operation will erase all
 the data in your target device.
 
@@ -20,7 +20,7 @@ bütün verileri silecektir.
 Devam etmek istiyor musunuz ?</translation>
     </message>
     <message>
-        <location filename="../ui/Burn.qml" line="112"/>
+        <location filename="../ui/Burn.qml" line="113"/>
         <source>Writing process could not start.
 
 The disk image size is greater
@@ -31,12 +31,28 @@ Disk kalıbı boyutu hedef
 cihazın boyutundan daha yüksek.</translation>
     </message>
     <message>
-        <location filename="../ui/Burn.qml" line="160"/>
+        <location filename="../ui/Burn.qml" line="164"/>
+        <source>CANCELLING...</source>
+        <translation>İPTAL EDİLİYOR...</translation>
+    </message>
+    <message>
+        <location filename="../ui/Burn.qml" line="164"/>
+        <source>Cancel</source>
+        <translation>İptal Et</translation>
+    </message>
+    <message>
+        <location filename="../ui/Burn.qml" line="169"/>
+        <source>Are you sure to cancel ?</source>
+        <translation>İptal etmek istediğinize emin misiniz ?</translation>
+    </message>
+    <message>
+        <location filename="../ui/Burn.qml" line="193"/>
+        <location filename="../ui/Burn.qml" line="201"/>
         <source>Pardus Image Writer</source>
         <translation>Pardus Disk Kalıbı Yazıcı</translation>
     </message>
     <message>
-        <location filename="../ui/Burn.qml" line="162"/>
+        <location filename="../ui/Burn.qml" line="195"/>
         <source>Writing process is Finished !</source>
         <translation>Yazma işlemi Tamamlandı !</translation>
     </message>
@@ -75,38 +91,38 @@ cihazın boyutundan daha yüksek.</translation>
         <translation>Pardus Disk Kalıbı Yazıcı</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="31"/>
+        <location filename="../ui/main.qml" line="32"/>
         <source>Something is trying to kill me!!!</source>
         <translation>Bir şey beni öldürmeye çalışıyor !!!</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="115"/>
+        <location filename="../ui/main.qml" line="120"/>
         <source>Next</source>
         <translation>İleri</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="133"/>
+        <location filename="../ui/main.qml" line="138"/>
         <source>Back</source>
         <translation>Geri</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="155"/>
-        <location filename="../ui/main.qml" line="316"/>
+        <location filename="../ui/main.qml" line="160"/>
+        <location filename="../ui/main.qml" line="325"/>
         <source>Are you sure to exit ?</source>
         <translation>Çıkmak istediğinize emin misiniz ?</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="241"/>
+        <location filename="../ui/main.qml" line="246"/>
         <source>Yes</source>
         <translation>Evet</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="253"/>
+        <location filename="../ui/main.qml" line="258"/>
         <source>No</source>
         <translation>Hayır</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="314"/>
+        <location filename="../ui/main.qml" line="323"/>
         <source>Writing process is ongoing.
 Terminating it is not recommended.
 

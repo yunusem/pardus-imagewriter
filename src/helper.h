@@ -36,6 +36,7 @@ class Helper : public QObject
     Q_OBJECT
     Q_PROPERTY(bool burning READ burning
                NOTIFY burningFinished
+               NOTIFY burningCancelled
                NOTIFY terminateCalled)
     Q_PROPERTY(QStringList devices READ devices NOTIFY deviceListChanged)
     Q_PROPERTY(int progress READ progress NOTIFY progressChanged)
@@ -48,6 +49,7 @@ public:
     Q_INVOKABLE QString fileNameFromPath(const QString &path) const;
     Q_INVOKABLE bool preProcessImageFile(const QString &fileUrl);
     Q_INVOKABLE void writeToDevice(int index);
+    Q_INVOKABLE void cancelWriting();
     Q_INVOKABLE int maximumProgressValue();
     Q_INVOKABLE QString downloadsFolderPath() const;
     Q_INVOKABLE quint64 getImageSize() const;
@@ -64,7 +66,9 @@ private:
 signals:
     void progressChanged();
     void deviceListChanged();
+    void cancelWritingProcess();
     void burningFinished();
+    void burningCancelled();
     void terminateCalled();
 private slots:
     void scheduleEnumFlashDevices();

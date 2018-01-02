@@ -15,6 +15,7 @@ ApplicationWindow {
 
     property bool requestForBurn : false
     property bool requestForQuit : false
+    property bool requestForCancel : false
 
     property bool isBurning : false
     property string filePath : ""
@@ -45,6 +46,10 @@ ApplicationWindow {
         onBurningFinished: {
             isBurning = false
             burn.burningProcessFinished()
+        }
+        onBurningCancelled: {
+            isBurning = false
+            burn.burningProcessCancelled()
         }
     }
 
@@ -294,11 +299,15 @@ ApplicationWindow {
             burn.startBurning()
             requestForBurn = false
         }
+        if (requestForCancel) {
+            helper.cancelWriting()
+        }
 
     }
     onDialogRejected: {
         requestForQuit = false
         requestForBurn = false
+        requestForCancel = false
     }
 
     Component.onCompleted: {
