@@ -1,3 +1,14 @@
+pardus-imagewriter (0.1.2-1) unstable; urgency=medium
+
+  * Add README.md and screenshots
+  * Update README.md
+  * Add build instractions in README.md
+  * Update icon resolutions and enhance navigation from Burn. Closes: #5
+  * Add invokable functions about sizes. Closes: #4
+  * Update Turkish translations
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Tue, 02 Jan 2018 10:45:23 +0300
+
 pardus-imagewriter (0.1.1-1) unstable; urgency=medium
 
   [ Hikmet Baş ]
