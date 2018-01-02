@@ -182,13 +182,128 @@ ApplicationWindow {
         }
     }
 
+    Button {
+        id: aboutBtn
+        scale: 1
+        background: Rectangle {
+            color: "#2c2c2c"
+        }
+        enabled: true
+        visible: true
+        hoverEnabled: true
+        anchors {
+            top: parent.top
+            topMargin: -5
+            left: parent.left
+            leftMargin: 5
+        }
+        Image {
+            anchors.centerIn: parent
+            mipmap: true
+            source: "../images/info.svg"
+        }
+
+        ToolTip.text: qsTr("About")
+        ToolTip.delay: 1000
+        ToolTip.visible: hovered
+        ToolTip.timeout: 3000
+        onClicked: {
+            aboutDialog.open()
+        }
+    }
+
+    Popup {
+        id:aboutDialog
+        width: appMain.width
+        height: appMain.height * 9 / 10
+        modal: true
+        closePolicy: Popup.CloseOnPressOutside
+        y: appMain.height / 10
+
+        ColumnLayout {
+            anchors {
+                top: parent.top
+                horizontalCenter: parent.horizontalCenter
+            }
+            spacing: parent.height / 30
+
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                text: "<b>"+ qsTr("Pardus Image Writer") + "</b>"
+            }
+
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                mipmap: true
+                source: "../images/pardus.svg"
+            }
+
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.horizontalAlignment
+                text: qsTr("Author") + " : " + "Yunusemre Şentürk"
+            }
+
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                text: qsTr("Source Code") + " : " +"<a href='https://github.com/yunusem/pardus-imagewriter'>GitHub</a>"
+                onLinkActivated: Qt.openUrlExternally(link)
+
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
+                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
+            }
+
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                text: qsTr("License") + " : " +"<a href='http://ozgurlisanslar.org.tr/gpl/gpl-v3/'>GPL v3</a>"
+                onLinkActivated: Qt.openUrlExternally(link)
+
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.NoButton // we don't want to eat clicks on the Text
+                    cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
+            }
+
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.horizontalAlignment
+                text: qsTr("Release") + " : " + "0.1.4"
+            }
+
+        }
+        Button {
+            id: okBtn
+            anchors {
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            visible: true
+            enabled: true
+            text: qsTr("Ok")
+            onClicked: {
+                aboutDialog.close()
+            }
+        }
+
+
+    }
+
     Rectangle {
         id: dock
         color: "transparent"
         height: appMain.height / 8
         anchors {
             top: parent.top
-            left: parent.left
+            left: aboutBtn.right
             right: minimizeBtn.left
         }
         MouseArea {

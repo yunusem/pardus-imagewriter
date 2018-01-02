@@ -169,5 +169,6 @@ void Helper::updateProgressValue(int increment)
 
 void Helper::output(QString msg)
 {
+    emit burningCancelled();
     qDebug() << msg;
 }

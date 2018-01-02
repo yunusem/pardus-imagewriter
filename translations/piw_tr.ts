@@ -87,6 +87,7 @@ cihazın boyutundan daha yüksek.</translation>
     <name>main</name>
     <message>
         <location filename="../ui/main.qml" line="14"/>
+        <location filename="../ui/main.qml" line="233"/>
         <source>Pardus Image Writer</source>
         <translation>Pardus Disk Kalıbı Yazıcı</translation>
     </message>
@@ -107,22 +108,52 @@ cihazın boyutundan daha yüksek.</translation>
     </message>
     <message>
         <location filename="../ui/main.qml" line="160"/>
-        <location filename="../ui/main.qml" line="325"/>
+        <location filename="../ui/main.qml" line="440"/>
         <source>Are you sure to exit ?</source>
         <translation>Çıkmak istediğinize emin misiniz ?</translation>
     </message>
     <message>
+        <location filename="../ui/main.qml" line="206"/>
+        <source>About</source>
+        <translation>Hakkında</translation>
+    </message>
+    <message>
         <location filename="../ui/main.qml" line="246"/>
+        <source>Author</source>
+        <translation>Yazar</translation>
+    </message>
+    <message>
+        <location filename="../ui/main.qml" line="252"/>
+        <source>Source Code</source>
+        <translation>Kaynak Kodu</translation>
+    </message>
+    <message>
+        <location filename="../ui/main.qml" line="265"/>
+        <source>License</source>
+        <translation>Lisans</translation>
+    </message>
+    <message>
+        <location filename="../ui/main.qml" line="279"/>
+        <source>Release</source>
+        <translation>Sürüm</translation>
+    </message>
+    <message>
+        <location filename="../ui/main.qml" line="291"/>
+        <source>Ok</source>
+        <translation>Tamam</translation>
+    </message>
+    <message>
+        <location filename="../ui/main.qml" line="361"/>
         <source>Yes</source>
         <translation>Evet</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="258"/>
+        <location filename="../ui/main.qml" line="373"/>
         <source>No</source>
         <translation>Hayır</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="323"/>
+        <location filename="../ui/main.qml" line="438"/>
         <source>Writing process is ongoing.
 Terminating it is not recommended.
 

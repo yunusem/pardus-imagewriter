@@ -3,5 +3,7 @@
         <file>images/icon.svg</file>
         <file>images/iso.svg</file>
         <file>images/usb.svg</file>
+        <file>images/info.svg</file>
+        <file>images/pardus.svg</file>
     </qresource>
 </RCC>
