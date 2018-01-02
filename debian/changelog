@@ -1,3 +1,9 @@
+pardus-imagewriter (0.1.2-2) unstable; urgency=medium
+
+  * Update runtime dependency
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Tue, 02 Jan 2018 12:51:22 +0300
+
 pardus-imagewriter (0.1.2-1) unstable; urgency=medium
 
   * Add README.md and screenshots
