@@ -22,6 +22,16 @@ Homepage: http://pardus.org.tr
 
 Package: pardus-imagewriter
 Architecture: amd64
-Depends: ${shlibs:Depends}, ${misc:Depends}, gksu, libqt5svg5, qml-module-qtquick-controls2, qml-module-qt-labs-folderlistmodel, qml-module-qtquick2
+Depends: ${shlibs:Depends}, ${misc:Depends},
+     gksu,
+     libqt5svg5,
+     qml-module-qtquick-controls2,
+     qml-module-qt-labs-folderlistmodel,
+     qml-module-qtquick2,
+     qml-module-qtquick-layouts,
+     qml-module-qtgraphicaleffects,
+     qml-module-qtquick-dialogs,
+     qml-module-qtquick-controls,
+     qml-module-qt-labs-settings
 Description: Pardus Image Writer
  Simple Qt based Disk Image USB burner.
