@@ -61,6 +61,7 @@ private:
     quint64 imageSize;
     int progressValue;
     int maxValue;
+    int comboBoxIndex;
     bool b;
     QStringList dl;
     UsbDeviceMonitor *udm;
