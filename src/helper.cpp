@@ -35,7 +35,7 @@
 #include <QDebug>
 
 Helper::Helper(QObject *parent) : QObject(parent),
-    progressValue(0), maxValue(1), b(false)
+    progressValue(0), maxValue(1),comboBoxIndex(-1), b(false)
 {
 
 #if defined(Q_OS_LINUX)
@@ -81,6 +81,8 @@ QStringList Helper::devices()
 
 void Helper::scheduleEnumFlashDevices()
 {
+    emit scheduleStarted();
+    comboBoxIndex = -1;
     dl.clear();
     udl = platformEnumFlashDevices();
     for(int i = 0; i < udl.length(); i++) {
@@ -110,6 +112,7 @@ bool Helper::preProcessImageFile(const QString &fileUrl)
 
 void Helper::writeToDevice(int index)
 {
+    comboBoxIndex = index;
     progressValue = 0;
     maxValue = 1;
     if(dl.length() == 0 || imageFile == "") {
@@ -117,7 +120,7 @@ void Helper::writeToDevice(int index)
         return;
     }
 
-    UsbDevice selectedDevice = udl.at(index);
+    UsbDevice selectedDevice = udl.at(comboBoxIndex);
     maxValue = alignNumberDiv(imageSize, DEFAULT_UNIT);    
     ImageWriter *writer = new ImageWriter(imageFile, selectedDevice);
     QThread *writerThread = new QThread(this);
@@ -169,6 +172,12 @@ void Helper::updateProgressValue(int increment)
 
 void Helper::output(QString msg)
 {
-    emit burningCancelled();
-    qDebug() << msg;
+    if (msg.contains("control block address is invalid",Qt::CaseInsensitive)) {
+        qDebug() << msg;
+        qDebug() << "Retrying to write";
+        writeToDevice(comboBoxIndex);
+    } else {
+        emit burningCancelled();
+        qDebug() << msg;
+    }
 }

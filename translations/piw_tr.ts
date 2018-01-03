@@ -78,82 +78,90 @@ cihazın boyutundan daha yüksek.</translation>
 <context>
     <name>Target</name>
     <message>
-        <location filename="../ui/Target.qml" line="18"/>
+        <location filename="../ui/Target.qml" line="20"/>
         <source>Choose the target</source>
         <translation>Hedefi seçiniz</translation>
+    </message>
+    <message>
+        <source>Click to update USB device list</source>
+        <translation type="vanished">USB cihazı listesini yenilemek için tıkla</translation>
+    </message>
+    <message>
+        <source>USB device list has been updated</source>
+        <translation type="vanished">USB cihazı listesi güncellendi</translation>
     </message>
 </context>
 <context>
     <name>main</name>
     <message>
         <location filename="../ui/main.qml" line="14"/>
-        <location filename="../ui/main.qml" line="233"/>
+        <location filename="../ui/main.qml" line="242"/>
         <source>Pardus Image Writer</source>
         <translation>Pardus Disk Kalıbı Yazıcı</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="32"/>
+        <location filename="../ui/main.qml" line="33"/>
         <source>Something is trying to kill me!!!</source>
         <translation>Bir şey beni öldürmeye çalışıyor !!!</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="120"/>
-        <source>Next</source>
-        <translation>İleri</translation>
+        <location filename="../ui/main.qml" line="129"/>
+        <source>NEXT</source>
+        <translation>İLERİ</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="138"/>
-        <source>Back</source>
-        <translation>Geri</translation>
+        <location filename="../ui/main.qml" line="147"/>
+        <source>BACK</source>
+        <translation>GERİ</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="160"/>
-        <location filename="../ui/main.qml" line="440"/>
+        <location filename="../ui/main.qml" line="169"/>
+        <location filename="../ui/main.qml" line="449"/>
         <source>Are you sure to exit ?</source>
         <translation>Çıkmak istediğinize emin misiniz ?</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="206"/>
+        <location filename="../ui/main.qml" line="215"/>
         <source>About</source>
         <translation>Hakkında</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="246"/>
+        <location filename="../ui/main.qml" line="255"/>
         <source>Author</source>
         <translation>Yazar</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="252"/>
+        <location filename="../ui/main.qml" line="261"/>
         <source>Source Code</source>
         <translation>Kaynak Kodu</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="265"/>
+        <location filename="../ui/main.qml" line="274"/>
         <source>License</source>
         <translation>Lisans</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="279"/>
+        <location filename="../ui/main.qml" line="288"/>
         <source>Release</source>
         <translation>Sürüm</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="291"/>
+        <location filename="../ui/main.qml" line="300"/>
         <source>Ok</source>
         <translation>Tamam</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="361"/>
+        <location filename="../ui/main.qml" line="370"/>
         <source>Yes</source>
         <translation>Evet</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="373"/>
+        <location filename="../ui/main.qml" line="382"/>
         <source>No</source>
         <translation>Hayır</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="438"/>
+        <location filename="../ui/main.qml" line="447"/>
         <source>Writing process is ongoing.
 Terminating it is not recommended.
 

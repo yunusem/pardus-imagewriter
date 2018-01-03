@@ -5,6 +5,7 @@
 #include "src/usbdevice.h"
 
 #include <QApplication>
+#include <QTime>
 #include <QDebug>
 
 // Several WinAPI COM specific macros for keeping the code clean
@@ -12,42 +13,50 @@
 // Runs the COM request specified, checks for return value and throws an exception
 // with descriptive error message if it's not OK
 #define CHECK_OK(code, msg)                             \
-    {                                                   \
-        HRESULT res = code;                             \
-        if (res != S_OK)                                \
-        {                                               \
-            throw formatErrorMessageFromCode(msg, res); \
-        }                                               \
+{                                                   \
+    HRESULT res = code;                             \
+    if (res != S_OK)                                \
+{                                               \
+    throw formatErrorMessageFromCode(msg, res); \
+    }                                               \
     }
 
 // Releases the COM object and nullifies the pointer
 #define SAFE_RELEASE(obj)   \
-    {                       \
-        if (obj != NULL)    \
-        {                   \
-            obj->Release(); \
-            obj = NULL;     \
-        }                   \
+{                       \
+    if (obj != NULL)    \
+{                   \
+    obj->Release(); \
+    obj = NULL;     \
+    }                   \
     }
 
 // Allocated a BSTR string using the specified text, checks for successful memory allocation
 // and throws an exception with descriptive error message if unsuccessful
 #define ALLOC_BSTR(name, str)                                                 \
-    {                                                                         \
-        name = SysAllocString(str);                                           \
-        if (name == NULL)                                                     \
-        {                                                                     \
-            throw QObject::tr("Memory allocation for %1 failed.").arg(#name); \
-        }                                                                     \
+{                                                                         \
+    name = SysAllocString(str);                                           \
+    if (name == NULL)                                                     \
+{                                                                     \
+    throw QObject::tr("Memory allocation for %1 failed.").arg(#name); \
+    }                                                                     \
     }
 
 // Releases the BSTR string and nullifies the pointer
 #define FREE_BSTR(str)      \
-    {                       \
-        SysFreeString(str); \
-        str = NULL;         \
+{                       \
+    SysFreeString(str); \
+    str = NULL;         \
     }
 
+void delay( int millisecondsToWait )
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}
 
 QList<UsbDevice> platformEnumFlashDevices()
 {
@@ -87,7 +96,13 @@ QList<UsbDevice> platformEnumFlashDevices()
 
         // Create the IWbemLocator and execute the first query (list of physical disks attached via USB)
         CHECK_OK(CoCreateInstance(CLSID_WbemAdministrativeLocator, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, IID_IUnknown, reinterpret_cast<void**>(&pIWbemLocator)), QObject::tr("CoCreateInstance(WbemAdministrativeLocator) failed."));
-        CHECK_OK(pIWbemLocator->ConnectServer(strNamespace, NULL, NULL, NULL, 0, NULL, NULL, &pWbemServices), QObject::tr("ConnectServer failed."));
+        while(true) {
+            HRESULT res = pIWbemLocator->ConnectServer(strNamespace, NULL, NULL, NULL, 0, NULL, NULL, &pWbemServices);
+            if (res == S_OK) {
+                break;
+            }
+            delay(200);
+        }
         CHECK_OK(pWbemServices->ExecQuery(strQL, strQueryDisks, WBEM_FLAG_RETURN_IMMEDIATELY, NULL, &pEnumDisksObject), QObject::tr("Failed to query USB flash devices."));
 
         // Enumerate the received list of devices
@@ -102,7 +117,7 @@ QList<UsbDevice> platformEnumFlashDevices()
             VARIANT val;
 
             // Fetch the required properties and store them in the UsbDevice object
-            UsbDevice* deviceData = new UsbDevice;
+            deviceData = new UsbDevice;
 
             // User-friendly name of the device
             if (pDiskObject->Get(L"Model", 0, &val, 0, 0) == WBEM_S_NO_ERROR)

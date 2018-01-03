@@ -8,28 +8,12 @@ Item {
 
     ColumnLayout {
         anchors.centerIn: parent
-        spacing: parent.height / 10
+        spacing: parent.height / 15
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Choose the disk image file")
-        }
-
-        Image {
-            id: diskImageIcon
-            smooth: true
-            mipmap: true
-            scale: 0.8
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: "../images/iso.svg"
-            Behavior on scale {
-                PropertyAnimation {
-                    easing.overshoot: 2
-                    easing.type: Easing.OutBack
-                    duration: 200
-                }
-            }
-        }
+        }        
 
         Button {
             id: btn
@@ -41,20 +25,36 @@ Item {
                 fd.open()
             }
         }
+
+        Image {
+            id: diskImageIcon
+            smooth: true
+            mipmap: true
+            scale: 1
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "../images/iso.svg"
+            Behavior on scale {
+                PropertyAnimation {
+                    easing.overshoot: 2
+                    easing.type: Easing.OutBack
+                    duration: 200
+                }
+            }
+        }
     }
 
     DropArea {
         anchors.fill: parent
         onEntered: {
-            diskImageIcon.scale = 1
+            diskImageIcon.scale = 1.2
         }
 
         onExited: {
-            diskImageIcon.scale = 0.8
+            diskImageIcon.scale = 1.0
         }
 
         onDropped: {
-            diskImageIcon.scale = 0.8
+            diskImageIcon.scale = 1.0
             console.log(drop.text)
         }
     }

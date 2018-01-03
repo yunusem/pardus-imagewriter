@@ -4,34 +4,26 @@ import QtQuick.Layouts 1.1
 
 Item {
     anchors.fill: parent
-
+    signal scheduleStarted
     signal dlChanged
     property alias targetDeviceName : cb.currentText
     property alias comboBoxIndex : cb.currentIndex
 
-    ColumnLayout {
+    ColumnLayout {        
         anchors.centerIn: parent
-        spacing: parent.height / 10
+        spacing: parent.height / 15
+        Layout.minimumWidth: appMain.width
+        Layout.maximumWidth: appMain.width
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Choose the target")
         }
 
-        Image {
-            id: deviceIcon
-            smooth: true
-            mipmap: true
-            scale: 0.8
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: "../images/usb.svg"
-        }
-
-
         ComboBox {
             id: cb
             enabled: !isBurning
-            Layout.fillWidth: true
+            //Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             scale: 0.7
             spacing: 6
@@ -46,10 +38,9 @@ Item {
                 id: cbp
                 scale: 0.6
                 y: cb.height - 1
-                x: cb.x - (cb.width - cbp.width) / 2
-                width: cb.width * 8 / 10
+                x: cb.x //- (cb.width - cbp.width) / 2
+                width: cb.width * 7 / 10
                 implicitHeight: contentItem.implicitHeight
-                //height: cb.count * cb.height * 6 / 10
                 padding: 1
 
                 contentItem: ListView {
@@ -64,13 +55,49 @@ Item {
                     color: "#2c2c2c"
                 }
             }
+
+        }
+
+        Image {
+            id: deviceIcon
+            smooth: true
+            mipmap: true
+            scale: 1.0
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "../images/usb.svg"
+        }
+
+    }
+
+    BusyIndicator {
+        id:bi
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: parent.height / 15
+        }
+        onRunningChanged: {
+            if (bi.running) {
+                targetDevice = ""
+            }
         }
     }
+
+    onScheduleStarted: {
+        bi.running = true
+    }
+
     onDlChanged: {
+        bi.running = false
         cb.currentIndex = 0
     }
+
     Button {
         id: themeBtn
         visible: false
+    }
+
+    Component.onCompleted: {
+        bi.running = false
     }
 }

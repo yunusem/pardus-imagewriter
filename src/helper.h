@@ -38,7 +38,9 @@ class Helper : public QObject
                NOTIFY burningFinished
                NOTIFY burningCancelled
                NOTIFY terminateCalled)
-    Q_PROPERTY(QStringList devices READ devices NOTIFY deviceListChanged)
+    Q_PROPERTY(QStringList devices READ devices
+               NOTIFY scheduleStarted
+               NOTIFY deviceListChanged)
     Q_PROPERTY(int progress READ progress NOTIFY progressChanged)
 
 public:
@@ -59,12 +61,14 @@ private:
     quint64 imageSize;
     int progressValue;
     int maxValue;
+    int comboBoxIndex;
     bool b;
     QStringList dl;
     UsbDeviceMonitor *udm;
     QList<UsbDevice> udl;
 signals:
     void progressChanged();
+    void scheduleStarted();
     void deviceListChanged();
     void cancelWritingProcess();
     void burningFinished();
