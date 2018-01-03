@@ -27,14 +27,17 @@ ApplicationWindow {
 
     Helper {
         id: helper
+
         onTerminateCalled: {
             dialog.showButtons = false
             dialog.topic = qsTr("Something is trying to kill me!!!")
             dialog.open()
         }
+
         onScheduleStarted: {
             target.scheduleStarted()
         }
+
         onDeviceListChanged: {
             cbItems.clear();
             for (var i = 0; i < helper.devices.length; i++) {
@@ -43,13 +46,16 @@ ApplicationWindow {
             target.dlChanged()
             targetDevice = target.targetDeviceName
         }
+
         onProgressChanged: {
             burn.progressValueChanged()
         }
+
         onBurningFinished: {
             isBurning = false
             burn.burningProcessFinished()
         }
+
         onBurningCancelled: {
             isBurning = false
             burn.burningProcessCancelled()
@@ -65,14 +71,13 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: 0
         Page {
-
             width: appMain.width
             height: appMain.height
             File{
                 id: file
-
             }
         }
+
         Page {
             width: appMain.width
             height: appMain.height
@@ -88,6 +93,7 @@ ApplicationWindow {
                 id: burn
             }
         }
+
         onCurrentIndexChanged: {
             if(isBurning) {
                 currentIndex = 2
@@ -120,7 +126,7 @@ ApplicationWindow {
             bottom: parent.bottom
             right: parent.right
         }
-        text: qsTr("Next")
+        text: qsTr("NEXT")
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex + 1
         }
@@ -138,7 +144,7 @@ ApplicationWindow {
             bottom: parent.bottom
             left: parent.left
         }
-        text: qsTr("Back")
+        text: qsTr("BACK")
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex - 1
         }
@@ -279,7 +285,7 @@ ApplicationWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.horizontalAlignment
-                text: qsTr("Release") + " : " + "0.1.4"
+                text: qsTr("Release") + " : " + "0.1.5"
             }
 
         }

@@ -62,7 +62,7 @@ Item {
             id: deviceIcon
             smooth: true
             mipmap: true
-            scale: 0.8
+            scale: 1.0
             anchors.horizontalCenter: parent.horizontalCenter
             source: "../images/usb.svg"
         }
