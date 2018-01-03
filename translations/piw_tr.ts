@@ -78,9 +78,19 @@ cihazın boyutundan daha yüksek.</translation>
 <context>
     <name>Target</name>
     <message>
-        <location filename="../ui/Target.qml" line="18"/>
+        <location filename="../ui/Target.qml" line="24"/>
         <source>Choose the target</source>
         <translation>Hedefi seçiniz</translation>
+    </message>
+    <message>
+        <location filename="../ui/Target.qml" line="45"/>
+        <source>Click to update USB device list</source>
+        <translation>USB cihazı listesini yenilemek için tıkla</translation>
+    </message>
+    <message>
+        <location filename="../ui/Target.qml" line="66"/>
+        <source>USB device list has been updated</source>
+        <translation>USB cihazı listesi güncellendi</translation>
     </message>
 </context>
 <context>

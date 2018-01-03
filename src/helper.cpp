@@ -89,6 +89,11 @@ void Helper::scheduleEnumFlashDevices()
     emit deviceListChanged();
 }
 
+void Helper::updateDeviceList()
+{
+    this->scheduleEnumFlashDevices();
+}
+
 bool Helper::preProcessImageFile(const QString &fileUrl)
 {
     QString newImageFile;
