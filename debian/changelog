@@ -1,3 +1,17 @@
+pardus-imagewriter (0.1.5-1) unstable; urgency=medium
+
+  [ Yunusemre Şentürk ]
+  * Add refresh device list manually mechanism.
+  * Windows schedule device workaround
+
+  [ Hikmet Baş ]
+  * Retry writing against block id failure
+
+  [ Yunusemre Şentürk ]
+  * Fix scheduling usb devices problem better for windows. Change design. Closes: #13
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Wed, 03 Jan 2018 19:02:36 +0300
+
 pardus-imagewriter (0.1.4-1) unstable; urgency=medium
 
   * Add cancelling the writing progress support. Closes: #10
