@@ -442,6 +442,7 @@ ApplicationWindow {
     }
     onClosing: {
         close.accepted = false
+        raise()
         showNormal()
         if (isBurning) {
             dialog.topic = qsTr("Writing process is ongoing.\nTerminating it is not recommended.\n\nAre you sure to exit ?")

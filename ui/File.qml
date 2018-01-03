@@ -80,4 +80,13 @@ Item {
             fd.close()
         }
     }
+
+    Component.onCompleted: {
+        var fp = helper.filePathFromArguments()
+        if( fp !== "" && helper.preProcessImageFile(fp)) {
+            filePath = helper.filePathFromArguments()
+            fileName = helper.fileNameFromPath(filePath)
+            btn.text = fileName
+        }
+    }
 }
