@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.1
 
 Item {
     anchors.fill: parent
-
+    signal scheduleStarted
     signal dlChanged
     property alias targetDeviceName : cb.currentText
     property alias comboBoxIndex : cb.currentIndex
@@ -31,51 +31,6 @@ Item {
             scale: 0.8
             anchors.horizontalCenter: parent.horizontalCenter
             source: "../images/usb.svg"
-
-            Behavior on scale {
-                PropertyAnimation {
-                    duration: 50
-                }
-            }
-
-            MouseArea {
-                id:iconMa
-                hoverEnabled: true
-                anchors.fill: parent
-                ToolTip.text: qsTr("Click to update USB device list")
-                ToolTip.delay: 500
-                ToolTip.timeout: 4000
-                ToolTip.visible: iconMa.containsMouse
-                onPressed: {
-                    deviceIcon.scale = iconMa.containsMouse ? 0.7 : 0.8
-                }
-                onReleased: {
-                    deviceIcon.scale = 0.8
-                }
-                onClicked: {
-                    helper.updateDeviceList()
-                }
-            }
-        }
-
-        Label {
-            id: l1
-            opacity: 0.0
-            visible: l1.opacity == 0.0 ? false : true
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("USB device list has been updated")
-            Behavior on opacity {
-                PropertyAnimation {
-                    duration: 300
-                }
-            }
-            Timer {
-                interval: 3000
-                running: l1.opacity == 1.0 ? true : false
-                onTriggered: {
-                    l1.opacity = 0.0
-                }
-            }
         }
 
         ComboBox {
@@ -116,13 +71,32 @@ Item {
 
         }
     }
+
+    BusyIndicator {
+        id:bi
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: parent.height / 4 + 5
+        }
+
+    }
+
+    onScheduleStarted: {
+        bi.running = true
+    }
+
     onDlChanged: {
-        console.log("Device list changed")
-        l1.opacity = 1.0
+        bi.running = false
         cb.currentIndex = 0
     }
+
     Button {
         id: themeBtn
         visible: false
+    }
+
+    Component.onCompleted: {
+        bi.running = false
     }
 }

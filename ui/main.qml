@@ -32,6 +32,9 @@ ApplicationWindow {
             dialog.topic = qsTr("Something is trying to kill me!!!")
             dialog.open()
         }
+        onScheduleStarted: {
+            target.scheduleStarted()
+        }
         onDeviceListChanged: {
             cbItems.clear();
             for (var i = 0; i < helper.devices.length; i++) {

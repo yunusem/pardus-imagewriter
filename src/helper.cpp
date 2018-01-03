@@ -81,17 +81,13 @@ QStringList Helper::devices()
 
 void Helper::scheduleEnumFlashDevices()
 {
+    emit scheduleStarted();
     dl.clear();
     udl = platformEnumFlashDevices();
     for(int i = 0; i < udl.length(); i++) {
         dl.append(udl.at(i).formatDisplayName());
     }
     emit deviceListChanged();
-}
-
-void Helper::updateDeviceList()
-{
-    this->scheduleEnumFlashDevices();
 }
 
 bool Helper::preProcessImageFile(const QString &fileUrl)

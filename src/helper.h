@@ -38,7 +38,9 @@ class Helper : public QObject
                NOTIFY burningFinished
                NOTIFY burningCancelled
                NOTIFY terminateCalled)
-    Q_PROPERTY(QStringList devices READ devices NOTIFY deviceListChanged)
+    Q_PROPERTY(QStringList devices READ devices
+               NOTIFY scheduleStarted
+               NOTIFY deviceListChanged)
     Q_PROPERTY(int progress READ progress NOTIFY progressChanged)
 
 public:
@@ -54,7 +56,6 @@ public:
     Q_INVOKABLE QString downloadsFolderPath() const;
     Q_INVOKABLE quint64 getImageSize() const;
     Q_INVOKABLE quint64 getSelectedDeviceSize(const int index) const;
-    Q_INVOKABLE void updateDeviceList();
 private:
     QString imageFile;
     quint64 imageSize;
@@ -66,6 +67,7 @@ private:
     QList<UsbDevice> udl;
 signals:
     void progressChanged();
+    void scheduleStarted();
     void deviceListChanged();
     void cancelWritingProcess();
     void burningFinished();
