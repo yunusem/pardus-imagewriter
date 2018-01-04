@@ -63,7 +63,7 @@ Item {
         id: fd
         title: qsTr("Please choose the disk image")
         folder: helper.downloadsFolderPath()
-        nameFilters: [qsTr("Disk images") + " (*.iso *.bin *.img)"]
+        nameFilters: [qsTr("Disk images") + " (*.iso *.bin *.img *.ISO *.BIN *.IMG)"]
         onAccepted: {
             var path = fd.fileUrl.toString();
             if (helper.preProcessImageFile(path)) {
@@ -78,6 +78,15 @@ Item {
         visible: false
         Component.onCompleted: {
             fd.close()
+        }
+    }
+
+    Component.onCompleted: {
+        var fp = helper.filePathFromArguments()
+        if( fp !== "" && helper.preProcessImageFile(fp)) {
+            filePath = helper.filePathFromArguments()
+            fileName = helper.fileNameFromPath(filePath)
+            btn.text = fileName
         }
     }
 }

@@ -48,6 +48,7 @@ public:
     bool burning() const;
     QStringList devices();
     int progress() const;
+    Q_INVOKABLE QString filePathFromArguments() const;
     Q_INVOKABLE QString fileNameFromPath(const QString &path) const;
     Q_INVOKABLE bool preProcessImageFile(const QString &fileUrl);
     Q_INVOKABLE void writeToDevice(int index);

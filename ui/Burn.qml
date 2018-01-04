@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Material 2.0
 
 Item {
     anchors.fill: parent
@@ -16,9 +17,15 @@ Item {
     Item {
         id: p1
         anchors.fill: parent
-        opacity: isBurning ? 0 : 1.0
+        opacity: isBurning ? 0.0 : 1.0
 
-        ColumnLayout {
+        Behavior on opacity {
+            PropertyAnimation {
+                duration: 800
+            }
+        }
+
+        Column {
             anchors.centerIn: parent
             spacing: parent.height / 10
 
@@ -100,6 +107,8 @@ Item {
 
             Button {
                 id: btnBurn
+                highlighted: true
+                Material.accent: "#2c2c2c"
                 enabled: fileName != "" && targetDevice != ""
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Start")
@@ -117,22 +126,17 @@ Item {
                 }
             }
         }
-        Behavior on opacity {
-            PropertyAnimation {
-                duration: 400
-            }
-        }
     }
 
     Item {
         id: p2
 
         anchors.fill: parent
-        opacity: isBurning ? 1 : 0
+        opacity: p1.opacity == 0.0 ? 1.0 : 0.0
 
         Behavior on opacity {
             PropertyAnimation {
-                duration: 1000
+                duration: 800
             }
         }
 
@@ -142,8 +146,6 @@ Item {
             ProgressBarCircle {
                 id: pb
                 anchors {
-                    //top: parent.top
-                    //topMargin: parent.width / 10
                     horizontalCenter: parent.horizontalCenter
                 }
 
@@ -156,9 +158,10 @@ Item {
 
             Button {
                 id: btnCancel
+                highlighted: true
+                Material.accent: Material.Red
+                Material.theme: Material.Light
                 anchors {
-                    //top: pb.bottom
-                    //topMargin: parent.width / 10
                     horizontalCenter: parent.horizontalCenter
                 }
                 text: requestForCancel ? qsTr("CANCELLING...") : qsTr("Cancel")

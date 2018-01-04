@@ -32,6 +32,7 @@
 #include <QThread>
 #include <QStandardPaths>
 #include <QUrl>
+#include <QCoreApplication>
 #include <QDebug>
 
 Helper::Helper(QObject *parent) : QObject(parent),
@@ -48,6 +49,7 @@ Helper::Helper(QObject *parent) : QObject(parent),
     scheduleEnumFlashDevices();
 
     connect(udm, SIGNAL(deviceChanged()),this,SLOT(scheduleEnumFlashDevices()));
+
 }
 
 bool Helper::burning() const
@@ -58,6 +60,21 @@ bool Helper::burning() const
 int Helper::progress() const
 {
     return progressValue;
+}
+
+QString Helper::filePathFromArguments() const
+{
+    const QStringList args = QCoreApplication::arguments();
+    QString path = "";
+    if(args.length() > 1) {
+        path =  args.at(1);
+        QString suffix = QFileInfo(path).suffix();
+        if( suffix == "iso" || suffix == "bin" || suffix == "img" ||
+            suffix == "ISO" || suffix == "BIN" || suffix == "IMG") {
+            path = QDir(path).absolutePath();
+        }
+    }
+    return path;
 }
 
 QString Helper::fileNameFromPath(const QString &path) const
@@ -93,20 +110,19 @@ void Helper::scheduleEnumFlashDevices()
 
 bool Helper::preProcessImageFile(const QString &fileUrl)
 {
-    QString newImageFile;
+    QString newImageFile = fileUrl;
     if(fileUrl.left(7) == "file://") {
         newImageFile = QUrl(fileUrl).toLocalFile();
         newImageFile = QDir(newImageFile).absolutePath();
     }
     QFile f(newImageFile);
-    if (!f.open(QIODevice::ReadOnly))
-    {
-        qDebug() << "" << QDir::toNativeSeparators(newImageFile) << f.errorString();
+    if (!f.open(QIODevice::ReadOnly)) {
+        qDebug() << "Pre Process : " << QDir::toNativeSeparators(newImageFile) << f.errorString();
         return false;
     }
     imageSize = f.size();
     f.close();
-    imageFile = newImageFile;    
+    imageFile = newImageFile;
     return true;
 }
 
@@ -121,7 +137,7 @@ void Helper::writeToDevice(int index)
     }
 
     UsbDevice selectedDevice = udl.at(comboBoxIndex);
-    maxValue = alignNumberDiv(imageSize, DEFAULT_UNIT);    
+    maxValue = alignNumberDiv(imageSize, DEFAULT_UNIT);
     ImageWriter *writer = new ImageWriter(imageFile, selectedDevice);
     QThread *writerThread = new QThread(this);
 
@@ -133,7 +149,7 @@ void Helper::writeToDevice(int index)
     connect(this,SIGNAL(cancelWritingProcess()),writer,SLOT(cancelWriting()),Qt::DirectConnection);
     connect(writer, SIGNAL(blockWritten(int)), this, SLOT(updateProgressValue(int)));
 
-    connect(writer, SIGNAL(error(QString)), this, SLOT(output(QString)));    
+    connect(writer, SIGNAL(error(QString)), this, SLOT(output(QString)));
 
     connect(writer,SIGNAL(success()),this,SIGNAL(burningFinished()));
 
