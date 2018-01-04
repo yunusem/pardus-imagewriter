@@ -69,7 +69,8 @@ QString Helper::filePathFromArguments() const
     if(args.length() > 1) {
         path =  args.at(1);
         QString suffix = QFileInfo(path).suffix();
-        if( suffix == "iso" || suffix == "bin" || suffix == "img") {
+        if( suffix == "iso" || suffix == "bin" || suffix == "img" ||
+            suffix == "ISO" || suffix == "BIN" || suffix == "IMG") {
             path = QDir(path).absolutePath();
         }
     }

@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtQuick.Controls.Material 2.0
 import piw.helper 1.0
 
 ApplicationWindow {
@@ -152,7 +153,7 @@ ApplicationWindow {
 
     Button {
         id: closeBtn
-        scale: 0.8
+        scale: 1
         background: Rectangle {
             color: "#2c2c2c"
         }
@@ -173,7 +174,7 @@ ApplicationWindow {
 
     Button {
         id: minimizeBtn
-        scale: 1.2
+        scale: 1.4
         background: Rectangle {
             color: "#2c2c2c"
         }
@@ -181,9 +182,8 @@ ApplicationWindow {
         visible: true
         anchors {
             top: parent.top
-            topMargin: -5
-            right: parent.right
-            rightMargin: 20
+            topMargin: -7
+            right: closeBtn.left
         }
         text: "-"
         onClicked: {
@@ -285,12 +285,14 @@ ApplicationWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.horizontalAlignment
-                text: qsTr("Release") + " : " + "0.1.5"
+                text: qsTr("Release") + " : " + "0.1.6"
             }
 
         }
         Button {
             id: okBtn
+            highlighted: true
+            Material.accent: "#2c2c2c"
             anchors {
                 bottom: parent.bottom
                 horizontalCenter: parent.horizontalCenter
@@ -366,11 +368,10 @@ ApplicationWindow {
             spacing: parent.width / 10
             Button {
                 id: yesBtn
+                highlighted: true
+                Material.accent: "#2c2c2c"
                 visible: dialog.showButtons
                 text: qsTr("Yes")
-                background: Rectangle {
-                    color: "#2c2c2c"
-                }
                 onClicked: {
                     dialog.accepted()
                 }
@@ -378,12 +379,10 @@ ApplicationWindow {
 
             Button {
                 id: noBtn
+                highlighted: true
+                Material.accent: "#2c2c2c"
                 visible: dialog.showButtons
                 text: qsTr("No")
-                background: Rectangle {
-                    color: "#2c2c2c"
-                }
-
                 onClicked: {
                     dialog.rejected()
                 }

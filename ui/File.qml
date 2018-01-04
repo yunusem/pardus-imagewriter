@@ -63,7 +63,7 @@ Item {
         id: fd
         title: qsTr("Please choose the disk image")
         folder: helper.downloadsFolderPath()
-        nameFilters: [qsTr("Disk images") + " (*.iso *.bin *.img)"]
+        nameFilters: [qsTr("Disk images") + " (*.iso *.bin *.img *.ISO *.BIN *.IMG)"]
         onAccepted: {
             var path = fd.fileUrl.toString();
             if (helper.preProcessImageFile(path)) {
