@@ -1,3 +1,11 @@
+pardus-imagewriter (0.1.6-1) unstable; urgency=medium
+
+  * Add commandline argument support
+  * Update Material design on some buttons and prepare for mimetype support.
+  * Add mimetype support. Closes: #7
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Thu, 04 Jan 2018 15:03:57 +0300
+
 pardus-imagewriter (0.1.5-1) unstable; urgency=medium
 
   [ Yunusemre Şentürk ]
