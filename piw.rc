@@ -1,0 +1,27 @@
+#include <windows.h>
+
+ID_ICON    ICON    DISCARDABLE    "images/piw.ico"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "piw.exe.manifest"
+
+VS_VERSION_INFO VERSIONINFO
+PRODUCTVERSION  0,1,6,0
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName",        "TUBITAK ULAKBIM"
+            VALUE "InternalName",       "Pardus Image Writer"
+            VALUE "LegalCopyright",     "TUBITAK ULAKBIM"
+            VALUE "LegalTrademarks1",   "All Rights Reserved"
+            VALUE "OriginalFilename",   "piw.exe"
+            VALUE "ProductName",        "Pardus Image Writer"
+            VALUE "ProductVersion",     "0.1.6\0"
+        END
+    END
+
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END

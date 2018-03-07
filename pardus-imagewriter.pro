@@ -1,4 +1,4 @@
-QT += qml quick widgets
+QT += qml quick widgets svg
 
 CONFIG += c++11
 
@@ -24,6 +24,7 @@ HEADERS += \
     src/imagewriter.h
 
 win32 {
+    RC_FILE = piw.rc
     SOURCES += src/platform_win.cpp \
         src/usbdevicemonitor_win.cpp
     HEADERS += src/usbdevicemonitor_win_p.h
