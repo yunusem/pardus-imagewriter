@@ -8,7 +8,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QIcon>
-
+#include <QtQml>
 #include <QDebug>
 
 #if !defined(Q_OS_WIN32) && !defined(Q_OS_LINUX) && !defined(Q_OS_MAC)
@@ -48,7 +48,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setSetuidAllowed(true);
 #endif
     qmlRegisterType<Helper>("piw.helper",1,0,"Helper");
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
     QGuiApplication::setWindowIcon(QIcon(":/images/icon.svg"));
     QGuiApplication app(argc, argv);
 
