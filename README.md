@@ -14,39 +14,56 @@ Simple Qt cpp backend, qml frontend disk image writing application.
 
 ### On Windows (10 Home)
 
-![w1](/screenshots/piw_windows.jpg)
+If you need a standalone `piw.exe` tested on Windows 10,
+[here](https://www.pardus.org.tr/pardus-usb-olusturma/) it is. Guess the
+install link if you are not a Turkish speaker then follow the instruction
+screenshots to get your ISO file burnt into your USB stick.
+
+![piw_windows](/screenshots/piw_windows.jpg)
 
 ### On MacOS (High Sierra)
 
-![w1](/screenshots/piw_macOS.jpg)
+![piw_macOS](/screenshots/piw_macOS.jpg)
 
 
-## How to build (on Linux)
+## How to build and run (on Linux)
 
 Clone the project
+
 ```bash
 git clone https://github.com/yunusem/pardus-imagewriter.git
 ```
 Install build dependencies
+
 ```bash
-sudo apt install build-essential libc6 libgcc1 libgl1-mesa-glx | libgl1 libqt5core5a libqt5dbus5 libqt5gui5  libqt5network5 libqt5qml5 libqt5quick5 libqt5svg5-dev libqt5widgets5 libstdc++6 libudev-dev qtdeclarative5-dev
+sudo apt-get install build-essential libc6 libgcc1 libgl1-mesa-glx libgl1 \
+libqt5core5a libqt5dbus5 libqt5gui5l ibqt5network5 libqt5qml5 libqt5quick5 \
+libqt5svg5-dev libqt5widgets5 libstdc++6 libudev-dev qtdeclarative5-dev
 ```
 
 Build
+
 ```bash
 cd pardus-imagewriter
 mkdir build
 cd build
+export QT_SELECT=qt5
 qmake ../
 make
 ```
 
 Install Runtime dependencies
+
 ```bash
-sudo apt install libqt5svg5 gksu qml-module-qtquick-controls2 qml-module-qt-labs-folderlistmodel qml-module-qtquick2
+sudo apt install gksu libqt5svg5 qml-module-qtquick-controls2  \
+qml-module-qt-labs-folderlistmodel qml-module-qtquick2 \
+qml-module-qtquick-layouts qml-module-qtgraphicaleffects \
+qml-module-qtquick-dialogs qml-module-qtquick-controls \
+qml-module-qtquick-templates2 qml-module-qt-labs-settings
 ```
 
 Run
+
 ```bash
 gksudo ./piw
 ```

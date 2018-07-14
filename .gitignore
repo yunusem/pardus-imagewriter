@@ -50,3 +50,7 @@ Thumbs.db
 ###########################
 *.dsc
 *.pro.user
+
+# Build directory#
+##################
+build/
