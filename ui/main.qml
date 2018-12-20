@@ -337,7 +337,7 @@ ApplicationWindow {
     Rectangle {
         id: dock
         color: "transparent"
-        height: appMain.height / 8
+        height: appMain.height / 10
         anchors {
             top: parent.top
             left: aboutBtn.right
@@ -348,16 +348,24 @@ ApplicationWindow {
             property int cposx: 1
             property int cposy: 1
             onPressed: {
+                cursorShape = Qt.SizeAllCursor
                 var cpos = Qt.point(mouse.x,mouse.y);
                 cposx = cpos.x
                 cposy = cpos.y
+
             }
             onPositionChanged: {
+                cursorShape = Qt.SizeAllCursor
                 var delta = Qt.point(mouse.x - cposx, mouse.y - cposy);
                 appMain.x += delta.x;
                 appMain.y += delta.y;
 
             }
+            onReleased: {
+                cursorShape = Qt.ArrowCursor
+            }
+
+
         }
     }
 
