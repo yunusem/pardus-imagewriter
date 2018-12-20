@@ -79,12 +79,14 @@ QList<UsbDevice> platformEnumFlashDevices()
                         deviceData->m_PhysicalDevice = "/dev/" + blockDevices[blockDeviceIdx];
                         deviceData->m_Volumes << deviceData->m_PhysicalDevice;
 
-                        // Get the device size
                         quint64 blocksNum = readFileContents(scsiTargetDir.absoluteFilePath(blockDevices[blockDeviceIdx] + "/size")).toULongLong();
+                        if(!(blocksNum > 0))
+                            continue;
                         // The size is counted in logical blocks (tested with 4K-sector HDD)
                         deviceData->m_SectorSize = readFileContents(scsiTargetDir.absoluteFilePath(blockDevices[blockDeviceIdx] + "/queue/logical_block_size")).toUInt();
                         if (deviceData->m_SectorSize == 0)
                             deviceData->m_SectorSize = 512;
+
                         deviceData->m_Size = blocksNum * deviceData->m_SectorSize;
 
                         // Get the user-friendly name for the device by reading the parent device fields

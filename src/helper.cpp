@@ -70,7 +70,7 @@ QString Helper::filePathFromArguments() const
         path =  args.at(1);
         QString suffix = QFileInfo(path).suffix();
         if( suffix == "iso" || suffix == "bin" || suffix == "img" ||
-            suffix == "ISO" || suffix == "BIN" || suffix == "IMG") {
+                suffix == "ISO" || suffix == "BIN" || suffix == "IMG") {
             path = QDir(path).absolutePath();
         }
     }
@@ -103,11 +103,9 @@ void Helper::scheduleEnumFlashDevices()
     dl.clear();
     udl = platformEnumFlashDevices();
     for(int i = 0; i < udl.length(); i++) {
-        if(udl.at(i).m_Size > 0) {
-            dl.append(udl.at(i).formatDisplayName());
-        }
-    }
+        dl.append(udl.at(i).formatDisplayName());
 
+    }
     emit deviceListChanged();
 }
 
