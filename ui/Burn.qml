@@ -27,82 +27,115 @@ Item {
 
         Column {
             anchors.centerIn: parent
-            spacing: parent.height / 10
+            spacing: parent.height / 12
 
             Item {
                 id: fileRow
-                height: fileIcon.height
-                width: appMain.width - 10
+                height: p1.height / 10
+                width: p1.width * 5 / 6
+                anchors.horizontalCenter: parent.horizontalCenter
                 visible: fileName != ""
 
                 MouseArea {
+                    id: fileRowMa
                     enabled: !isBurning
                     anchors.fill: parent
+                    hoverEnabled: true
                     onClicked: {
                         swipeView.currentIndex = 0
                     }
+                    cursorShape: Qt.PointingHandCursor
                 }
 
-                Row {
-                    spacing: 5
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Image {
-                        id: fileIcon
-                        source: "../images/iso.svg"
-                        width: appMain.width / 10
-                        height: width
-                        smooth: true
-                        mipmap: true
-                    }
 
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: fileName
-                        font.pointSize: 9
-                        fontSizeMode: Text.HorizontalFit
-                        wrapMode: Text.WordWrap
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
+                Image {
+                    id: fileIcon
+                    height: parent.height
+                    width: height
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: "../images/iso.svg"
+                    sourceSize {
+                        width: fileIcon.width
+                        height: fileIcon.height
+                    }
+                    smooth: true
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        leftMargin: 5
                     }
                 }
+
+                Label {
+                    id: fileLabel
+                    text: fileName
+                    color: fileRowMa.containsMouse ? "#ffcb08" : "#eeeeee"
+                    font.pointSize: parent.height / 4 > 0 ? parent.height / 4 : 10
+                    elide: Text.ElideMiddle
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: fileIcon.right
+                        right: parent.right
+                        rightMargin: 5
+                    }
+
+                }
+
             }
 
             Item {
                 id: targetRow
-                height: targetIcon.height
-                width: appMain.width - 10
+                height: p1.height / 10
+                width: p1.width * 3 / 4
+                anchors.horizontalCenter: parent.horizontalCenter
                 visible: targetDevice != ""
 
                 MouseArea {
+                    id: targetRowMa
                     enabled: !isBurning
                     anchors.fill: parent
+                    hoverEnabled: true
                     onClicked: {
                         swipeView.currentIndex = 1
                     }
+                    cursorShape: Qt.PointingHandCursor
                 }
 
-                Row {
-                    spacing: 5
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Image {
-                        id: targetIcon
-                        source: "../images/usb.svg"
-                        width: appMain.width / 10
-                        height: width
-                        smooth: true
-                        mipmap: true
+                Image {
+                    id: targetIcon
+                    height: parent.height
+                    width: height
+                    source: "../images/usb.svg"
+                    sourceSize {
+                        width: targetIcon.width
+                        height: targetIcon.height
                     }
-
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: targetDevice
-                        font.pointSize: 9
-                        fontSizeMode: Text.HorizontalFit
-                        wrapMode: Text.WordWrap
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
+                    smooth: false
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        leftMargin: 5
                     }
                 }
+
+                Label {
+                    id: targetLabel
+                    text: targetDevice
+                    color: targetRowMa.containsMouse ? "#ffcb08" : "#eeeeee"
+                    font.pointSize: parent.height / 4 > 0 ? parent.height / 4 : 10
+                    wrapMode: Text.WordWrap
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: targetIcon.right
+                        right: parent.right
+                        margins: 5
+                    }
+                }
+
             }
 
             Button {
