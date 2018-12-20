@@ -13,15 +13,26 @@ Item {
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Choose the disk image file")
-        }        
+        }
 
         Button {
             id: btn
-            scale: 0.8
             enabled: !isBurning
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "+"
-            onClicked: {                
+            width: btnLabel.text == "+" ? parent.width / 8 : parent.width * 3 / 2
+            scale: 0.8
+            Label {
+                id: btnLabel
+                anchors.centerIn: parent
+                text: "+"
+                width: parent.width - 6
+                elide: Text.ElideMiddle
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: parent.height / 4 > 0 ? parent.height / 4 : 10
+            }
+
+            onClicked: {
                 fd.open()
             }
         }
@@ -69,11 +80,11 @@ Item {
             if (helper.preProcessImageFile(path)) {
                 filePath = path
                 fileName = helper.fileNameFromPath(filePath)
-                btn.text = fileName
+                btnLabel.text = fileName
             }
         }
         onRejected: {
-            btn.text = fileName != "" ? fileName : "+"
+            btnLabel.text = fileName != "" ? fileName : "+"
         }
         visible: false
         Component.onCompleted: {
@@ -86,7 +97,7 @@ Item {
         if( fp !== "" && helper.preProcessImageFile(fp)) {
             filePath = helper.filePathFromArguments()
             fileName = helper.fileNameFromPath(filePath)
-            btn.text = fileName
+            btnLabel.text = fileName
         }
     }
 }
