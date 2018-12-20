@@ -107,9 +107,11 @@ ApplicationWindow {
         interactive: true
         count: swipeView.count
         currentIndex: swipeView.currentIndex
-        anchors.bottom: swipeView.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-
+        anchors {
+            bottom: swipeView.bottom
+            bottomMargin: 3
+            horizontalCenter: parent.horizontalCenter
+        }
         onCurrentIndexChanged: {
             swipeView.currentIndex = indicator.currentIndex
         }
@@ -118,16 +120,18 @@ ApplicationWindow {
 
     Button {
         id: nextBtn
-        scale: 0.7
-        background: Rectangle {
-            color: "#2c2c2c"
-        }
+        Material.background: "#2c2c2c"
+        width: parent.width / 6
+        height: width * 3 / 4
         visible: swipeView.currentIndex == 2 ? false : true
         anchors {
             bottom: parent.bottom
+            bottomMargin: -5
             right: parent.right
+            rightMargin: 1
         }
         text: qsTr("NEXT")
+        font.pointSize: height / 4 > 0 ? height / 4 : 9
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex + 1
         }
@@ -135,17 +139,19 @@ ApplicationWindow {
 
     Button {
         id: backBtn
-        scale: 0.7
-        background: Rectangle {
-            color: "#2c2c2c"
-        }
+        Material.background: "#2c2c2c"
+        width: parent.width / 6
+        height: width * 3 / 4
         enabled: ! isBurning
         visible: swipeView.currentIndex == 0 ? false : true
         anchors {
             bottom: parent.bottom
+            bottomMargin: -5
             left: parent.left
+            rightMargin: 1
         }
         text: qsTr("BACK")
+        font.pointSize: height / 4 > 0 ? height / 4 : 9
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex - 1
         }
@@ -153,18 +159,27 @@ ApplicationWindow {
 
     Button {
         id: closeBtn
-        scale: 1
-        background: Rectangle {
-            color: "#2c2c2c"
-        }
+        Material.background: "#2c2c2c"
+        width: parent.width / 12
+        height: width + 12
         enabled: ! isBurning
         visible: true
         anchors {
             top: parent.top
             topMargin: -5
             right: parent.right
+            rightMargin: 1
         }
-        text: "X"
+
+        Image {
+            anchors.centerIn: parent
+            source: "../images/close.svg"
+            sourceSize{
+                height: parent.height - 8
+                width: parent.width - 8
+            }
+            smooth: true
+        }
         onClicked: {
             requestForQuit = true
             dialog.topic = qsTr("Are you sure to exit ?")
@@ -174,18 +189,26 @@ ApplicationWindow {
 
     Button {
         id: minimizeBtn
-        scale: 1.4
-        background: Rectangle {
-            color: "#2c2c2c"
-        }
+        Material.background: "#2c2c2c"
+        width: parent.width / 12
+        height: width + 12
         enabled: true
         visible: true
         anchors {
             top: parent.top
-            topMargin: -7
+            topMargin: -5
             right: closeBtn.left
+            rightMargin: 1
         }
-        text: "-"
+        Image {
+            anchors.centerIn: parent
+            source: "../images/minimize.svg"
+            sourceSize{
+                height: parent.height - 8
+                width: parent.width - 8
+            }
+            smooth: true
+        }
         onClicked: {
             appMain.showMinimized()
         }
@@ -193,23 +216,26 @@ ApplicationWindow {
 
     Button {
         id: aboutBtn
-        scale: 1
-        background: Rectangle {
-            color: "#2c2c2c"
-        }
+        Material.background: "#2c2c2c"
         enabled: true
         visible: true
+        width: parent.width / 12
+        height: width + 12
         hoverEnabled: true
         anchors {
             top: parent.top
             topMargin: -5
             left: parent.left
-            leftMargin: 5
+            leftMargin: 1
         }
         Image {
             anchors.centerIn: parent
-            mipmap: true
             source: "../images/info.svg"
+            sourceSize{
+                height: parent.height - 6
+                width: parent.width - 6
+            }
+            smooth: true
         }
 
         ToolTip.text: qsTr("About")
