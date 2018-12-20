@@ -35,6 +35,11 @@ Item {
             onClicked: {
                 fd.open()
             }
+            hoverEnabled: true
+            ToolTip.text: qsTr("Click to choose disk image")
+            ToolTip.delay: 1000
+            ToolTip.visible: hovered
+            ToolTip.timeout: 3000
         }
 
         Image {

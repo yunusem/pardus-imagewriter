@@ -45,6 +45,10 @@ Item {
                         swipeView.currentIndex = 0
                     }
                     cursorShape: Qt.PointingHandCursor
+                    ToolTip.text: qsTr("Click to return disk image selection")
+                    ToolTip.delay: 1000
+                    ToolTip.visible: containsMouse
+                    ToolTip.timeout: 3000
                 }
 
 
@@ -101,6 +105,10 @@ Item {
                         swipeView.currentIndex = 1
                     }
                     cursorShape: Qt.PointingHandCursor
+                    ToolTip.text: qsTr("Click to return target selection")
+                    ToolTip.delay: 1000
+                    ToolTip.visible: containsMouse
+                    ToolTip.timeout: 3000
                 }
 
                 Image {
@@ -157,6 +165,11 @@ Item {
                         dialog.open()
                     }
                 }
+                hoverEnabled: true
+                ToolTip.text: qsTr("Click to start burning")
+                ToolTip.delay: 1000
+                ToolTip.visible: hovered
+                ToolTip.timeout: 3000
             }
         }
     }

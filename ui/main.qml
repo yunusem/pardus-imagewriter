@@ -135,6 +135,11 @@ ApplicationWindow {
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex + 1
         }
+        hoverEnabled: true
+        ToolTip.text: qsTr("Click to move forward")
+        ToolTip.delay: 1000
+        ToolTip.visible: hovered
+        ToolTip.timeout: 3000
     }
 
     Button {
@@ -155,6 +160,11 @@ ApplicationWindow {
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex - 1
         }
+        hoverEnabled: true
+        ToolTip.text: qsTr("Click to move backward")
+        ToolTip.delay: 1000
+        ToolTip.visible: hovered
+        ToolTip.timeout: 3000
     }
 
     Button {
@@ -185,6 +195,11 @@ ApplicationWindow {
             dialog.topic = qsTr("Are you sure to exit ?")
             dialog.open()
         }
+        hoverEnabled: true
+        ToolTip.text: qsTr("Click to close the application")
+        ToolTip.delay: 1000
+        ToolTip.visible: hovered
+        ToolTip.timeout: 3000
     }
 
     Button {
@@ -212,6 +227,11 @@ ApplicationWindow {
         onClicked: {
             appMain.showMinimized()
         }
+        hoverEnabled: true
+        ToolTip.text: qsTr("Click to minimize")
+        ToolTip.delay: 1000
+        ToolTip.visible: hovered
+        ToolTip.timeout: 3000
     }
 
     Button {
