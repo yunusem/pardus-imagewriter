@@ -5,5 +5,7 @@
         <file>images/usb.svg</file>
         <file>images/info.svg</file>
         <file>images/pardus.svg</file>
+        <file>images/minimize.svg</file>
+        <file>images/close.svg</file>
     </qresource>
 </RCC>
