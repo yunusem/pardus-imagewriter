@@ -103,8 +103,11 @@ void Helper::scheduleEnumFlashDevices()
     dl.clear();
     udl = platformEnumFlashDevices();
     for(int i = 0; i < udl.length(); i++) {
-        dl.append(udl.at(i).formatDisplayName());
+        if(udl.at(i).m_Size > 0) {
+            dl.append(udl.at(i).formatDisplayName());
+        }
     }
+
     emit deviceListChanged();
 }
 
