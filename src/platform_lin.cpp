@@ -3,6 +3,7 @@
 
 #include <QDir>
 #include <QRegularExpression>
+#include <QFileInfo>
 #include <QDebug>
 #include "src/platform_lin_suprogram.h"
 #include "src/usbdevice.h"
@@ -92,11 +93,19 @@ QList<UsbDevice> platformEnumFlashDevices()
                         usbParentDevice.prepend(usbDevicesRoot + "/");
                         // TODO: Find out how to get more "friendly" name (for SATA-USB connector it shows the bridge
                         // device name instead of the disk drive name)
+                        QDir credentialsDir(usbParentDevice);
+                        QString manufacturerPath = usbParentDevice + "/manufacturer";
+                        QString productPath = usbParentDevice + "/product";
+
+                        if(!(QFileInfo(manufacturerPath).exists() || QFileInfo(productPath).exists())){
+                            credentialsDir.cd(credentialsDir.canonicalPath());
+                            credentialsDir.cdUp();
+                        }
                         deviceData->m_VisibleName = (
-                                    readFileContents(usbParentDevice + "/manufacturer").trimmed() +
-                                    " " +
-                                    readFileContents(usbParentDevice + "/product").trimmed()
-                                    ).trimmed();
+                                    readFileContents(credentialsDir.absolutePath() + "/manufacturer")
+                                    .trimmed() + " " +
+                                    readFileContents(credentialsDir.absolutePath() + "/product")
+                                    .trimmed()).trimmed();
 
                         // The device information is now complete, append the entry
                         l.append(*deviceData);
@@ -145,7 +154,7 @@ bool ensureElevated()
         qDebug() << "run with root privilages";
         return false;
     }
-/*
+    /*
     // Prepare the list of arguments and restart ourselves using the su-application found
     QStringList args;
     // First comes our own executable
@@ -169,6 +178,6 @@ bool ensureElevated()
     // Something went wrong, we should have never returned! Cleanup and return error
     for (int i = 0; i < suPrograms.size(); ++i)
         delete suPrograms[i];
-        qDebug() << "Please, restart the program with root privileges.";
+    qDebug() << "Please, restart the program with root privileges.";
     return false;
 }
