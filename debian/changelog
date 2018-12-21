@@ -1,3 +1,31 @@
+pardus-imagewriter (0.1.7) unstable; urgency=medium
+
+  [ Yunusemre Şentürk ]
+  * Include QtQml explicitly and Check QT_VERSION for 5.6 above specific delerations. Closes: #15
+
+  [ Gökhan Karabulut ]
+  * Fix GNU/Linux build and runtime instructions
+
+  [ Yunusemre Şentürk ]
+  * Support debian by default
+  * Fix listing devices with 0 size
+  * Fix could not get device pretty name when using external usb hub
+  * Update icons
+  * Fix HiDpi problem on about button and Change characteristics of window management buttons
+  * Fix disk image name doesnt fit the layout after file dialog
+  * Update navigation buttons and use image on window management buttons
+  * Carry size control into platform_lin
+  * Change cursor shape while moving the window
+  * Update Burn page looking
+  * Add tooltips on buttons. Closes: #8
+  * Update Turkish translations
+  * Use polkit for administrative privillages in linux
+  * Add system notification support for linux via notify-send. Closes: #12
+  * Change version in about dialog
+  * Use native versioning
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Fri, 21 Dec 2018 10:47:20 +0300
+
 pardus-imagewriter (0.1.6-1) unstable; urgency=medium
 
   * Add commandline argument support
