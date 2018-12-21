@@ -5,9 +5,7 @@
 #include <QRegularExpression>
 #include <QFileInfo>
 #include <QDebug>
-#include "src/platform_lin_suprogram.h"
 #include "src/usbdevice.h"
-
 
 QList<UsbDevice> platformEnumFlashDevices()
 {
@@ -123,63 +121,10 @@ bool ensureElevated()
 {
     // If we already have root privileges do nothing
     uid_t uid = getuid();
-    if (uid == 0)
+    if (uid == 0) {
         return true;
-
-    // Search for known GUI su-applications.
-    // The list is priority-ordered. If there are native su-applications present,
-    // using the first such program. Otherwise, using just the first program that is present.
-    QList<SuProgram*> suPrograms = { new XdgSu(), new BeeSu(), new KdeSu(), new GkSu() };
-    SuProgram* suProgram = NULL;
-    for (int i = 0; i < suPrograms.size(); ++i)
-    {
-        // Skip missing su-apps
-        if (!suPrograms[i]->isPresent())
-            continue;
-
-        if (suPrograms[i]->isNative())
-        {
-            // If we found a native su-application - using it as preferred and stop searching
-            suProgram = suPrograms[i];
-            break;
-        }
-        else
-        {
-            // If not native, and no other su-application was found - using it, but continue searching,
-            // in case a native app will appear down the list
-            if (suProgram == NULL)
-                suProgram = suPrograms[i];
-        }
-    }
-    if (suProgram == NULL)
-    {
-        qDebug() << "run with root privilages";
+    } else {
+        qDebug() << "Please, restart the program with root privileges.";
         return false;
     }
-    /*
-    // Prepare the list of arguments and restart ourselves using the su-application found
-    QStringList args;
-    // First comes our own executable
-    args << mApp->applicationFilePath();
-    // We need to explicitly pass language and initial directory so that the new instance
-    // inherited the current user's parameters rather than root's
-    QString argLang = mApp->getLocale();
-    if (!argLang.isEmpty())
-        args << "--lang=" + argLang;
-    QString argDir = mApp->getInitialDir();
-    if (!argDir.isEmpty())
-        args << "--dir=" + argDir;
-    // Finally, if image file was supplied, append it as well
-    QString argImage = mApp->getInitialImage();
-    if (!argImage.isEmpty())
-        args << argImage;
-        */
-    // And now try to take off with all this garbage
-    //suProgram->restartAsRoot(args);
-
-    // Something went wrong, we should have never returned! Cleanup and return error
-    for (int i = 0; i < suPrograms.size(); ++i)
-        delete suPrograms[i];
-    qDebug() << "Please, restart the program with root privileges.";
-    return false;
 }
