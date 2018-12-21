@@ -1,3 +1,14 @@
+pardus-imagewriter (0.1.9) unstable; urgency=medium
+
+  [ Hikmet Baş ]
+  * Make changes to build static standalone windows application
+
+  [ Yunusemre Şentürk ]
+  * Add drop external file support. Closes: #6
+  * Fix label font pointsize on navigaiton buttons. Closes: #20
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Fri, 21 Dec 2018 16:35:32 +0300
+
 pardus-imagewriter (0.1.8) unstable; urgency=medium
 
   * Use pkexec instead of gksu
