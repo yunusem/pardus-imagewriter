@@ -4,7 +4,7 @@ ID_ICON    ICON    DISCARDABLE    "images/piw.ico"
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "piw.exe.manifest"
 
 VS_VERSION_INFO VERSIONINFO
-PRODUCTVERSION  0,1,6,0
+PRODUCTVERSION  0,1,9,0
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
@@ -16,7 +16,7 @@ BEGIN
             VALUE "LegalTrademarks1",   "All Rights Reserved"
             VALUE "OriginalFilename",   "piw.exe"
             VALUE "ProductName",        "Pardus Image Writer"
-            VALUE "ProductVersion",     "0.1.6\0"
+            VALUE "ProductVersion",     "0.1.9\0"
         END
     END
 

@@ -331,7 +331,7 @@ ApplicationWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.horizontalAlignment
-                text: qsTr("Release") + " : " + "0.1.7"
+                text: qsTr("Release") + " : " + "0.1.9"
             }
 
         }

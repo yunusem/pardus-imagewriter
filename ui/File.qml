@@ -62,6 +62,7 @@ Item {
     DropArea {
         anchors.fill: parent
         onEntered: {
+
             diskImageIcon.scale = 1.2
         }
 
@@ -71,7 +72,14 @@ Item {
 
         onDropped: {
             diskImageIcon.scale = 1.0
-            console.log(drop.text)
+            if(drop.hasUrls && drop.urls.toString() !== "") {
+                var str = drop.urls.toString();
+                if(evaluateExtension(str)) {
+                    processFile(str)
+                }
+            } else {
+                drop.accept(Qt.IgnoreAction)
+            }
         }
     }
 
@@ -82,11 +90,7 @@ Item {
         nameFilters: [qsTr("Disk images") + " (*.iso *.bin *.img *.ISO *.BIN *.IMG)"]
         onAccepted: {
             var path = fd.fileUrl.toString();
-            if (helper.preProcessImageFile(path)) {
-                filePath = path
-                fileName = helper.fileNameFromPath(filePath)
-                btnLabel.text = fileName
-            }
+            processFile(path)
         }
         onRejected: {
             btnLabel.text = fileName != "" ? fileName : "+"
@@ -94,6 +98,23 @@ Item {
         visible: false
         Component.onCompleted: {
             fd.close()
+        }
+    }
+
+    function evaluateExtension(filePath) {
+        var str = filePath.toString()
+        str = str.trim()
+        var ext = str.slice(str.length -3, str.length)
+        ext = ext.toLowerCase()
+        var extArray = ["iso","bin","img"]
+        var ret = extArray.indexOf(ext)  === -1 ? false : true
+        return ret
+    }
+
+    function processFile(fp) {
+        if (helper.preProcessImageFile(fp)) {
+            fileName = helper.fileNameFromPath(fp)
+            btnLabel.text = fileName
         }
     }
 
