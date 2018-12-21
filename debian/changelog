@@ -1,3 +1,9 @@
+pardus-imagewriter (0.1.8) unstable; urgency=medium
+
+  * Use pkexec instead of gksu
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Fri, 21 Dec 2018 10:55:28 +0300
+
 pardus-imagewriter (0.1.7) unstable; urgency=medium
 
   [ Yunusemre Şentürk ]
