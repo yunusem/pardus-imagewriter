@@ -23,8 +23,8 @@ Homepage: http://pardus.org.tr
 Package: pardus-imagewriter
 Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends},
-     gksu,
      libqt5svg5,
+     policykit-1,
      qml-module-qtquick-controls2,
      qml-module-qt-labs-folderlistmodel,
      qml-module-qtquick2,
