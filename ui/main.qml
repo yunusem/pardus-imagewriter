@@ -131,7 +131,7 @@ ApplicationWindow {
             rightMargin: 1
         }
         text: qsTr("NEXT")
-        font.pointSize: height / 4 > 0 ? height / 4 : 9
+        font.pointSize: height / 5 > 0 ? height / 5 : 9
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex + 1
         }
@@ -156,7 +156,7 @@ ApplicationWindow {
             rightMargin: 1
         }
         text: qsTr("BACK")
-        font.pointSize: height / 4 > 0 ? height / 4 : 9
+        font.pointSize: height / 5 > 0 ? height / 5 : 9
         onClicked: {
             swipeView.currentIndex = swipeView.currentIndex - 1
         }
