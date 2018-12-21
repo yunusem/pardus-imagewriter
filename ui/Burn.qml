@@ -92,7 +92,7 @@ Item {
             Item {
                 id: targetRow
                 height: p1.height / 10
-                width: p1.width * 3 / 4
+                width: p1.width * 4 / 5
                 anchors.horizontalCenter: parent.horizontalCenter
                 visible: targetDevice != ""
 
@@ -167,7 +167,7 @@ Item {
                 }
                 hoverEnabled: true
                 ToolTip.text: qsTr("Click to start burning")
-                ToolTip.delay: 1000
+                ToolTip.delay: 1500
                 ToolTip.visible: hovered
                 ToolTip.timeout: 3000
             }
@@ -211,7 +211,7 @@ Item {
                     horizontalCenter: parent.horizontalCenter
                 }
                 text: requestForCancel ? qsTr("CANCELLING...") : qsTr("Cancel")
-                visible: true
+                visible: isBurning
                 enabled: !requestForCancel
                 onClicked: {
                     requestForCancel = true
@@ -243,6 +243,8 @@ Item {
         target.comboBoxIndex = previousIndex
         dialog.topic = qsTr("Writing process is Finished !")
         dialog.showButtons = false
+        helper.notifySystem(dialog.topic, qsTr("You can now remove the device:")
+                            + " <b>" + targetDevice.split("(")[0]+"</b>" )
         dialog.open()
     }
     onBurningProcessCancelled: {

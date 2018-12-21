@@ -62,7 +62,7 @@ cihazın boyutundan daha yüksek.</translation>
     </message>
     <message>
         <location filename="../ui/Burn.qml" line="242"/>
-        <location filename="../ui/Burn.qml" line="250"/>
+        <location filename="../ui/Burn.qml" line="252"/>
         <source>Pardus Image Writer</source>
         <translation>Pardus Disk Kalıbı Yazıcı</translation>
     </message>
@@ -70,6 +70,11 @@ cihazın boyutundan daha yüksek.</translation>
         <location filename="../ui/Burn.qml" line="244"/>
         <source>Writing process is Finished !</source>
         <translation>Yazma işlemi Tamamlandı !</translation>
+    </message>
+    <message>
+        <location filename="../ui/Burn.qml" line="246"/>
+        <source>You can now remove the device:</source>
+        <translation>Artık hedef cihazı çıkarabilirsiniz:</translation>
     </message>
 </context>
 <context>

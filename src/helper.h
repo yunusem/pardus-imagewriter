@@ -57,6 +57,8 @@ public:
     Q_INVOKABLE QString downloadsFolderPath() const;
     Q_INVOKABLE quint64 getImageSize() const;
     Q_INVOKABLE quint64 getSelectedDeviceSize(const int index) const;
+    Q_INVOKABLE void notifySystem(const QString &title, const QString &content);
+
 private:
     QString imageFile;
     quint64 imageSize;

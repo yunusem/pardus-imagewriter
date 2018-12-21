@@ -24,6 +24,7 @@
 #include "src/imagewriter.h"
 #if defined(Q_OS_LINUX)
 #include "src/signalhandler.h"
+#include <QProcess>
 #endif
 #include <QFile>
 #include <QDir>
@@ -174,6 +175,22 @@ quint64 Helper::getImageSize() const
 quint64 Helper::getSelectedDeviceSize(const int index) const
 {
     return udl.at(index).m_Size;
+}
+
+void Helper::notifySystem(const QString &title, const QString &content)
+{
+    qDebug() << content;
+#if defined(Q_OS_LINUX)
+    QProcess p;
+    QStringList args;
+    args << "-u" << "normal";
+    args << "-t" << "17000";
+    args << "-i" << "/usr/share/pardus/pardus-imagewriter/icon.svg";
+    args << title << content;
+
+    QString command = "/usr/bin/notify-send";
+    p.execute(command,args);
+#endif
 }
 
 int Helper::maximumProgressValue()
