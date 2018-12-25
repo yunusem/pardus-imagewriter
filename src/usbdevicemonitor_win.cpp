@@ -6,9 +6,6 @@
 #include "src/usbdevicemonitor.h"
 #include "src/usbdevicemonitor_win_p.h"
 
-
-static bool firstRun = TRUE;
-
 UsbDeviceMonitorPrivate::UsbDeviceMonitorPrivate()
 {
 }
