@@ -2,12 +2,9 @@
 // Windows implementation of UsbDeviceMonitor
 
 #include <QApplication>
-
+#include <QDebug>
 #include "src/usbdevicemonitor.h"
 #include "src/usbdevicemonitor_win_p.h"
-
-
-// Private class implementation
 
 UsbDeviceMonitorPrivate::UsbDeviceMonitorPrivate()
 {
@@ -43,8 +40,11 @@ bool UsbDeviceMonitor::nativeEventFilter(const QByteArray& eventType, void* mess
     Q_UNUSED(eventType);
 
     MSG* msg = static_cast<MSG*>(message);
+
     if ((msg->message == WM_DEVICECHANGE) &&
-        ((msg->wParam == DBT_DEVICEARRIVAL) || (msg->wParam == DBT_DEVICEREMOVECOMPLETE)))
+            ((msg->wParam == DBT_DEVICEARRIVAL) ||
+             (msg->wParam == DBT_DEVICEREMOVECOMPLETE) ||
+             msg->wParam == DBT_DEVNODES_CHANGED))
     {
         // If the event was caused by adding or remiving a device, mark the WinAPI message as processed
         // and emit the notification signal
@@ -52,6 +52,7 @@ bool UsbDeviceMonitor::nativeEventFilter(const QByteArray& eventType, void* mess
         emit deviceChanged();
         return true;
     }
+
     return false;
 }
 

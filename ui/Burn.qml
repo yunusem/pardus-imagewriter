@@ -10,6 +10,7 @@ Item {
     signal burningProcessFinished
     signal burningProcessCancelled
     signal startBurning
+    signal warnUserCalled
 
     property real maxValue : 1
     property int previousIndex : 0
@@ -251,5 +252,11 @@ Item {
         requestForCancel = false
         appMain.title = qsTr("Pardus Image Writer")
         target.comboBoxIndex = previousIndex
+    }
+
+    onWarnUserCalled: {
+        dialog.topic = helper.messageFromBackend
+        dialog.showButtons = false
+        dialog.open()
     }
 }

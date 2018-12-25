@@ -37,7 +37,7 @@
 #include <QDebug>
 
 Helper::Helper(QObject *parent) : QObject(parent),
-    progressValue(0), maxValue(1),comboBoxIndex(-1), b(false)
+    progressValue(0), maxValue(1),comboBoxIndex(-1), b(false), retryCount(0)
 {
 
 #if defined(Q_OS_LINUX)
@@ -61,6 +61,11 @@ bool Helper::burning() const
 int Helper::progress() const
 {
     return progressValue;
+}
+
+QString Helper::messageFromBackend() const
+{
+    return m_messageFromBackend;
 }
 
 QString Helper::filePathFromArguments() const
@@ -101,11 +106,10 @@ void Helper::scheduleEnumFlashDevices()
 {
     emit scheduleStarted();
     comboBoxIndex = -1;
-    dl.clear();
     udl = platformEnumFlashDevices();
+    dl.clear();
     for(int i = 0; i < udl.length(); i++) {
         dl.append(udl.at(i).formatDisplayName());
-
     }
     emit deviceListChanged();
 }
@@ -206,11 +210,21 @@ void Helper::updateProgressValue(int increment)
 
 void Helper::output(QString msg)
 {
+    m_messageFromBackend = msg;
     if (msg.contains("control block address is invalid",Qt::CaseInsensitive)) {
         qDebug() << msg;
         qDebug() << "Retrying to write";
-        writeToDevice(comboBoxIndex);
+        if(retryCount < 3) {
+            retryCount ++;
+            writeToDevice(comboBoxIndex);
+        } else {
+            emit warnUser();
+            emit burningCancelled();
+            qDebug() << msg;
+        }
+
     } else {
+        emit warnUser();
         emit burningCancelled();
         qDebug() << msg;
     }

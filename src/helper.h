@@ -42,12 +42,14 @@ class Helper : public QObject
                NOTIFY scheduleStarted
                NOTIFY deviceListChanged)
     Q_PROPERTY(int progress READ progress NOTIFY progressChanged)
+    Q_PROPERTY(QString messageFromBackend READ messageFromBackend NOTIFY warnUser)
 
 public:
     explicit Helper(QObject *parent = 0);
     bool burning() const;
     QStringList devices();
     int progress() const;
+    QString messageFromBackend() const;
     Q_INVOKABLE QString filePathFromArguments() const;
     Q_INVOKABLE QString fileNameFromPath(const QString &path) const;
     Q_INVOKABLE bool preProcessImageFile(const QString &fileUrl);
@@ -66,9 +68,11 @@ private:
     int maxValue;
     int comboBoxIndex;
     bool b;
+    unsigned int retryCount;
     QStringList dl;
     UsbDeviceMonitor *udm;
     QList<UsbDevice> udl;
+    QString m_messageFromBackend;
 signals:
     void progressChanged();
     void scheduleStarted();
@@ -77,6 +81,7 @@ signals:
     void burningFinished();
     void burningCancelled();
     void terminateCalled();
+    void warnUser();
 private slots:
     void scheduleEnumFlashDevices();
     void updateProgressValue(int increment);
