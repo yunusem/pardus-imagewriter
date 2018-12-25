@@ -61,6 +61,9 @@ ApplicationWindow {
             isBurning = false
             burn.burningProcessCancelled()
         }
+        onWarnUser: {
+            burn.warnUserCalled()
+        }
     }
 
     ListModel {
@@ -69,6 +72,7 @@ ApplicationWindow {
 
     SwipeView {
         id: swipeView
+
         anchors.fill: parent
         currentIndex: 0
         Page {
@@ -462,6 +466,7 @@ ApplicationWindow {
             interval: 3000
             running: !dialog.showButtons
             onTriggered: {
+                console.log(dialog.topic)
                 dialog.close()
             }
         }

@@ -72,25 +72,8 @@ QString formatErrorMessageFromCode(QString prefixMessage, DWORD errorCode = GetL
 //  the file contents or empty string if an error occurred
 QString readFileContents(const QString& fileName);
 
-// Callback function type for platformEnumFlashDevices (see below)
-// Input:
-//  cbParam        - parameter passed to the enumeration function
-//  DeviceVendor   - vendor of the USB device
-//  DeviceName     - name of the USB device
-//  PhysicalDevice - OS-specific path to the physical device
-//  Volumes        - list of volumes this device contains
-//  NumVolumes     - number of volumes in the list
-//  Size           - size of the disk in bytes
-//  SectorSize     - sector size of the device
-// Returns:
-//  nothing
-typedef void (*AddFlashDeviceCallbackProc)(void* cbParam, UsbDevice* device);
-
-// Performs platform-specific enumeration of USB flash disks and calls the callback
+// Performs platform-specific enumeration of USB flash disks
 // function for adding these devices into the application GUI structure
-// Input:
-//  callback - callback function to be called for each new device
-//  cbParam  - parameter to be passed to this callback function
 // Returns:
 //  true if enumeration completed successfully, false otherwise
 QList<UsbDevice> platformEnumFlashDevices();

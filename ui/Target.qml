@@ -9,13 +9,15 @@ Item {
     property alias targetDeviceName : cb.currentText
     property alias comboBoxIndex : cb.currentIndex
 
-    ColumnLayout {        
+    ColumnLayout {
+        id: clayout
         anchors.centerIn: parent
         spacing: parent.height / 15
         Layout.minimumWidth: appMain.width
         Layout.maximumWidth: appMain.width
 
         Label {
+            id: targetTitleLabel
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Choose the target")
         }
@@ -71,14 +73,26 @@ Item {
 
     BusyIndicator {
         id:bi
+        height: parent.height * 10 / 85
+        width: height
         anchors {
             horizontalCenter: parent.horizontalCenter
-            bottom: parent.bottom
-            bottomMargin: parent.height / 15
+            top: clayout.top
+            topMargin: clayout.spacing + targetTitleLabel.height + cb.height + 12
+            //bottomMargin: parent.height / 15
         }
         onRunningChanged: {
             if (bi.running) {
+                if(!isBurning) {
+                    swipeView.currentIndex = 1
+                    cb.enabled = false
+                }
+
                 targetDevice = ""
+            } else {
+                if(!isBurning) {
+                    cb.enabled = true
+                }
             }
         }
     }

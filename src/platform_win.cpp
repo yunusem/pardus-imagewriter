@@ -24,10 +24,10 @@
 // Releases the COM object and nullifies the pointer
 #define SAFE_RELEASE(obj)   \
 {                       \
-    if (obj != NULL)    \
+    if (obj != nullptr)    \
 {                   \
     obj->Release(); \
-    obj = NULL;     \
+    obj = nullptr;     \
     }                   \
     }
 
@@ -36,7 +36,7 @@
 #define ALLOC_BSTR(name, str)                                                 \
 {                                                                         \
     name = SysAllocString(str);                                           \
-    if (name == NULL)                                                     \
+    if (name == nullptr)                                                     \
 {                                                                     \
     throw QObject::tr("Memory allocation for %1 failed.").arg(#name); \
     }                                                                     \
@@ -46,7 +46,7 @@
 #define FREE_BSTR(str)      \
 {                       \
     SysFreeString(str); \
-    str = NULL;         \
+    str = nullptr;         \
     }
 
 void delay( int millisecondsToWait )
@@ -63,30 +63,30 @@ QList<UsbDevice> platformEnumFlashDevices()
     // Using WMI for enumerating the USB devices
 
     // Namespace of the WMI classes
-    BSTR strNamespace       = NULL;
+    BSTR strNamespace       = nullptr;
     // "WQL" - the query language we're gonna use (the only possible, actually)
-    BSTR strQL              = NULL;
+    BSTR strQL              = nullptr;
     // Query string for requesting physical devices
-    BSTR strQueryDisks      = NULL;
+    BSTR strQueryDisks      = nullptr;
     // Query string for requesting partitions for each of the the physical devices
-    BSTR strQueryPartitions = NULL;
+    BSTR strQueryPartitions = nullptr;
     // Query string for requesting logical disks for each of the partitions
-    BSTR strQueryLetters    = NULL;
+    BSTR strQueryLetters    = nullptr;
 
     // Various COM objects for executing the queries, enumerating lists and retrieving properties
-    IWbemLocator*         pIWbemLocator         = NULL;
-    IWbemServices*        pWbemServices         = NULL;
-    IEnumWbemClassObject* pEnumDisksObject      = NULL;
-    IEnumWbemClassObject* pEnumPartitionsObject = NULL;
-    IEnumWbemClassObject* pEnumLettersObject    = NULL;
-    IWbemClassObject*     pDiskObject           = NULL;
-    IWbemClassObject*     pPartitionObject      = NULL;
-    IWbemClassObject*     pLetterObject         = NULL;
+    IWbemLocator*         pIWbemLocator         = nullptr;
+    IWbemServices*        pWbemServices         = nullptr;
+    IEnumWbemClassObject* pEnumDisksObject      = nullptr;
+    IEnumWbemClassObject* pEnumPartitionsObject = nullptr;
+    IEnumWbemClassObject* pEnumLettersObject    = nullptr;
+    IWbemClassObject*     pDiskObject           = nullptr;
+    IWbemClassObject*     pPartitionObject      = nullptr;
+    IWbemClassObject*     pLetterObject         = nullptr;
 
     // Temporary object for attaching data to the combobox entries
-    UsbDevice* deviceData = NULL;
+    UsbDevice* deviceData;
     QList<UsbDevice> l;
-
+    bool loop;
     try
     {
         // Start with allocating the fixed strings
@@ -95,15 +95,22 @@ QList<UsbDevice> platformEnumFlashDevices()
         ALLOC_BSTR(strQueryDisks, L"SELECT * FROM Win32_DiskDrive WHERE InterfaceType = \"USB\"");
 
         // Create the IWbemLocator and execute the first query (list of physical disks attached via USB)
-        CHECK_OK(CoCreateInstance(CLSID_WbemAdministrativeLocator, NULL, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, IID_IUnknown, reinterpret_cast<void**>(&pIWbemLocator)), QObject::tr("CoCreateInstance(WbemAdministrativeLocator) failed."));
-        while(true) {
-            HRESULT res = pIWbemLocator->ConnectServer(strNamespace, NULL, NULL, NULL, 0, NULL, NULL, &pWbemServices);
-            if (res == S_OK) {
-                break;
+        CHECK_OK(CoCreateInstance(CLSID_WbemAdministrativeLocator, nullptr, CLSCTX_INPROC_SERVER | CLSCTX_LOCAL_SERVER, IID_IUnknown, reinterpret_cast<void**>(&pIWbemLocator)), QObject::tr("CoCreateInstance(WbemAdministrativeLocator) failed."));
+        loop = true;
+        while(loop) {
+            if(pIWbemLocator != nullptr) {
+                HRESULT res = pIWbemLocator->ConnectServer(strNamespace, nullptr, nullptr, nullptr, 0, nullptr, nullptr, &pWbemServices);
+                if (res == S_OK) {
+                    loop = false;
+                } else {
+                    delay(10);
+                }
+            } else {
+                loop = false;
             }
-            delay(200);
         }
-        CHECK_OK(pWbemServices->ExecQuery(strQL, strQueryDisks, WBEM_FLAG_RETURN_IMMEDIATELY, NULL, &pEnumDisksObject), QObject::tr("Failed to query USB flash devices."));
+
+        CHECK_OK(pWbemServices->ExecQuery(strQL, strQueryDisks, WBEM_FLAG_RETURN_IMMEDIATELY, nullptr, &pEnumDisksObject), QObject::tr("Failed to query USB flash devices."));
 
         // Enumerate the received list of devices
         for (;;)
@@ -167,7 +174,7 @@ QList<UsbDevice> platformEnumFlashDevices()
             ALLOC_BSTR(strQueryPartitions, reinterpret_cast<const wchar_t*>(qstrQueryPartitions.utf16()));
 
             // Execute the query
-            CHECK_OK(pWbemServices->ExecQuery(strQL, strQueryPartitions, WBEM_FLAG_RETURN_IMMEDIATELY, NULL, &pEnumPartitionsObject), QObject::tr("Failed to query list of partitions."));
+            CHECK_OK(pWbemServices->ExecQuery(strQL, strQueryPartitions, WBEM_FLAG_RETURN_IMMEDIATELY, nullptr, &pEnumPartitionsObject), QObject::tr("Failed to query list of partitions."));
 
             // Enumerate the received list of partitions
             for (;;)
@@ -199,7 +206,7 @@ QList<UsbDevice> platformEnumFlashDevices()
                     ALLOC_BSTR(strQueryLetters, reinterpret_cast<const wchar_t*>(qstrQueryLetters.utf16()));
 
                     // Execute the query
-                    CHECK_OK(pWbemServices->ExecQuery(strQL, strQueryLetters, WBEM_FLAG_RETURN_IMMEDIATELY, NULL, &pEnumLettersObject), QObject::tr("Failed to query list of logical disks."));
+                    CHECK_OK(pWbemServices->ExecQuery(strQL, strQueryLetters, WBEM_FLAG_RETURN_IMMEDIATELY, nullptr, &pEnumLettersObject), QObject::tr("Failed to query list of logical disks."));
 
                     // Enumerate the received list of logical disks
                     for (;;)
@@ -236,7 +243,7 @@ QList<UsbDevice> platformEnumFlashDevices()
             // The device information is now complete, append the entry
             l.append(*deviceData);
             // The object is now under the GUI control, nullify the pointer
-            deviceData = NULL;
+            deviceData = nullptr;
         }
     }
     catch (QString errMessage)
@@ -246,7 +253,7 @@ QList<UsbDevice> platformEnumFlashDevices()
     }
 
     // The cleanup stage
-    if (deviceData != NULL)
+    if (deviceData != nullptr)
         delete deviceData;
 
     SAFE_RELEASE(pLetterObject);
